@@ -1,0 +1,946 @@
+[
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres = 'Action' THEN 'High - Energy' WHEN genres = 'Comedy' THEN 'Light - Hearted' ELSE 'Other' END AS genre_type FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并根据类型将其分为高能、轻松和其他类别"
+  },
+  {
+    "sql": "SELECT movieId, title, LENGTH(title) AS title_length FROM movies",
+    "question": "查询电影表中的电影编号、标题以及标题的长度"
+  },
+  {
+    "sql": "SELECT movieId, title, UPPER(title) AS upper_title FROM movies",
+    "question": "查询电影表中的电影编号、标题，并将标题转换为大写"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN LENGTH(title) > 20 THEN 'Long Title' ELSE 'Short Title' END AS title_length_category FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并根据标题长度分为长标题和短标题类别"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, IF(genres LIKE '%Sci - Fi%', 'Science Fiction Included', 'No Science Fiction') AS sci_fi_status FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断是否包含科幻类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, COALESCE(genres, 'Unknown Genre') AS genre_check FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，如果类型为空则显示未知类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CONCAT(title, ' (', genres, ')') AS title_genre_combined FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并将标题和类型组合成一个新字段"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres IN ('Adventure', 'Fantasy') THEN 'Epic Story' ELSE 'Other Story' END AS story_type FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并根据类型分为史诗故事和其他故事类别"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, SUBSTRING(title, 1, 5) AS title_start FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并提取标题的前 5 个字符"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, LOWER(genres) AS lower_genre FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并将类型转换为小写"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN INSTR(title, 'The') > 0 THEN 'Has The' ELSE 'No The' END AS the_presence FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断标题中是否包含 'The'"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, IFNULL(genres, 'No Genre') AS genre_null_check FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，如果类型为空则显示无类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, TRIM(title) AS trimmed_title FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并去除标题前后的空格"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN LENGTH(genres) > 15 THEN 'Long Genre Name' ELSE 'Short Genre Name' END AS genre_length_category FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并根据类型名称长度分为长类型名和短类型名类别"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, REPLACE(title, 'Movie', 'Film') AS replaced_title FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并将标题中的 'Movie' 替换为 'Film'"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, DATE_FORMAT(NOW(), '%Y') - SUBSTRING(title, - 4) AS approximate_age FROM movies WHERE title REGEXP '[0 - 9]{4}$'",
+    "question": "查询电影表中标题以 4 位数字结尾的电影编号、标题、类型，并估算电影的大概年份"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres LIKE '%Romance%' THEN 'Love Story' ELSE 'Non - Love Story' END AS love_story_status FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断是否为爱情故事类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CEIL(LENGTH(title) / 10) AS title_length_group FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并将标题长度按每 10 个字符分组"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, STRCMP(title, 'Top Movie') AS title_comparison FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并将标题与 'Top Movie' 进行比较"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres = 'Documentary' THEN 'Informative' ELSE 'Entertainment' END AS movie_nature FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并根据类型分为信息类和娱乐类"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, FIND_IN_SET('Action', genres) AS action_present FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断类型中是否包含动作类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, RPAD(title, 25, '*') AS padded_title FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并在标题右侧填充 * 至 25 个字符"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN LENGTH(title) % 2 = 0 THEN 'Even Length' ELSE 'Odd Length' END AS title_length_parity FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断标题长度是偶数还是奇数"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, LEFT(title, 3) AS title_first_three FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并提取标题的前 3 个字符"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres LIKE '%Horror%' THEN 'Scary' ELSE 'Not Scary' END AS scariness FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断是否为恐怖类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, LPAD(genres, 15, ' ') AS padded_genre FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并在类型左侧填充空格至 15 个字符"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, REVERSE(title) AS reversed_title FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并反转标题"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres = 'Musical' THEN 'Singing and Dancing' ELSE 'No Singing' END AS musical_status FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断是否为音乐类型"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, MID(title, 2, 4) AS title_middle_four FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并提取标题从第 2 个字符开始的 4 个字符"
+  },
+  {
+    "sql": "SELECT movieId, title, genres, CASE WHEN genres LIKE '%Thriller%' THEN 'Suspenseful' ELSE 'Relaxed' END AS suspense_level FROM movies",
+    "question": "查询电影表中的电影编号、标题、类型，并判断是否为悬疑类型"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance > 0.8 THEN 'High Relevance' WHEN relevance > 0.5 THEN 'Medium Relevance' ELSE 'Low Relevance' END AS relevance_category FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并根据相关性分为高、中、低类别"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, ROUND(relevance, 1) AS rounded_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并将相关性保留一位小数"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, ABS(relevance - 0.5) AS distance_from_half FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并计算相关性与 0.5 的距离"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance IN (0.1, 0.2, 0.3) THEN 'Low Range' ELSE 'Other Range' END AS relevance_range FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断相关性是否在低范围"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CEIL(relevance * 10) AS relevance_ceil FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并对相关性乘以 10 后向上取整"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, IF(relevance > 0.6, 'Above 0.6', 'Below 0.6') AS relevance_threshold FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断是否高于 0.6"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, FLOOR(relevance * 100) AS relevance_floor FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并对相关性乘以 100 后向下取整"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance BETWEEN 0.4 AND 0.6 THEN 'Mid - Range' ELSE 'Out of Mid - Range' END AS mid_range_check FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断是否在 0.4 到 0.6 之间"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, SQRT(relevance) AS square_root_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并计算相关性的平方根"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, POWER(relevance, 2) AS squared_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并计算相关性的平方"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance < 0.2 THEN 'Negligible' ELSE 'Significant' END AS relevance_importance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断相关性是否可忽略"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, TRUNCATE(relevance, 2) AS truncated_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并将相关性截断为两位小数"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, IF(relevance = 0, 'Zero Relevance', 'Non - Zero Relevance') AS zero_check FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断相关性是否为 0"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance > 0.7 AND tagId < 50 THEN 'High Rel & Low Tag' ELSE 'Other' END AS combined_condition FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并根据相关性大于 0.7 且标签编号小于 50 进行分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, LEAST(relevance, 0.9) AS capped_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并将相关性上限设为 0.9"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, GREATEST(relevance, 0.1) AS floored_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并将相关性下限设为 0.1"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance * tagId > 20 THEN 'High Product' ELSE 'Low Product' END AS product_check FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并计算相关性与标签编号的乘积并分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, LOG(relevance) AS log_relevance FROM genome - scores WHERE relevance > 0",
+    "question": "查询基因组评分表中相关性大于 0 的电影编号、标签编号、相关性，并计算相关性的自然对数"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance < 0.3 AND movieId % 2 = 0 THEN 'Low Rel & Even Movie' ELSE 'Other' END AS custom_condition FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并根据相关性小于 0.3 且电影编号为偶数进行分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, PI() * relevance AS pi_times_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并计算相关性乘以圆周率的值"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance > 0.85 THEN 'Very High' WHEN relevance > 0.7 THEN 'High' ELSE 'Not High' END AS refined_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并进行更精细的相关性分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, ROUND(relevance * 100) / 100 AS two_digit_round FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并将相关性四舍五入到两位小数"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, IF(relevance < 0.4, 'Low - Risk', 'High - Risk') AS risk_assessment FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并根据相关性进行风险评估"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance = (SELECT MAX(relevance) FROM genome - scores) THEN 'Max Relevance' ELSE 'Not Max' END AS max_check FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断是否为最大相关性"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, SQRT(POWER(relevance, 2) + 1) AS complex_calculation FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并进行一个复杂的计算"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance > 0.6 AND relevance < 0.8 THEN 'Sweet Spot' ELSE 'Outside' END AS sweet_spot_check FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，并判断是否在 0.6 到 0.8 之间的最佳区间"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, MOD(relevance * 10, 5) AS relevance_modulo FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，计算相关性乘以 10 后对 5 取模的结果"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance < 0.25 THEN 'Minimal' WHEN relevance < 0.5 THEN 'Low - Moderate' WHEN relevance < 0.75 THEN 'High - Moderate' ELSE 'High' END AS detailed_relevance_category FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，将相关性细分为极小、低中等、高中等和高四个类别"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CEILING(relevance * 100) / 100 AS ceiling_rounded_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，将相关性乘以 100 后向上取整再除以 100"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, IF(relevance < AVG(relevance) OVER(), 'Below Average', 'Above Average') AS relevance_avg_comparison FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，与整体平均相关性比较，判断是高于还是低于平均"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance BETWEEN 0.3 AND 0.7 AND tagId % 3 = 0 THEN 'Specific Range & Divisible' ELSE 'Other' END AS specific_condition FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，筛选出相关性在 0.3 到 0.7 之间且标签编号能被 3 整除的记录并分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, POW(relevance, 3) AS cubed_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，计算相关性的立方"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance > 0.7 AND (tagId < 30 OR tagId > 70) THEN 'High Rel & Extreme Tags' ELSE 'Other' END AS extreme_tag_condition FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，找出相关性大于 0.7 且标签编号小于 30 或大于 70 的记录并分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, LN(relevance + 1) AS log_plus_one_relevance FROM genome - scores WHERE relevance >= 0",
+    "question": "查询基因组评分表中相关性大于等于 0 的电影编号、标签编号、相关性，计算相关性加 1 后的自然对数"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, CASE WHEN relevance < 0.1 AND movieId > 100 THEN 'Low Rel & High MovieId' ELSE 'Other' END AS custom_low_rel_high_movieid FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，判断是否为相关性小于 0.1 且电影编号大于 100 的记录并分类"
+  },
+  {
+    "sql": "SELECT movieId, tagId, relevance, ROUND(relevance, 3) * 100 AS rounded_percentage_relevance FROM genome - scores",
+    "question": "查询基因组评分表中的电影编号、标签编号、相关性，将相关性保留三位小数后乘以 100"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN CHAR_LENGTH(tag) > 12 THEN 'Long Tag' ELSE 'Short Tag' END AS tag_length_category FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，根据标签长度分为长标签和短标签类别"
+  },
+  {
+    "sql": "SELECT tagId, tag, UPPER(LEFT(tag, 1)) AS first_letter_upper FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，将标签的首字母转换为大写"
+  },
+  {
+    "sql": "SELECT tagId, tag, REPEAT(tag, 2) AS repeated_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，将标签重复两次"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag REGEXP '^[aeiou]' THEN 'Vowel Start' ELSE 'Consonant Start' END AS start_letter_type FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否以元音字母开头"
+  },
+  {
+    "sql": "SELECT tagId, tag, INSTR(tag, 'action') AS action_position FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，查找 'action' 在标签中首次出现的位置"
+  },
+  {
+    "sql": "SELECT tagId, tag, SUBSTRING(tag, - 3) AS last_three_chars FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，提取标签的最后三个字符"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN CHAR_LENGTH(tag) % 2 = 0 THEN 'Even Length Tag' ELSE 'Odd Length Tag' END AS tag_length_parity FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签长度是偶数还是奇数"
+  },
+  {
+    "sql": "SELECT tagId, tag, REPLACE(tag, ' ', '_') AS space_replaced_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，将标签中的空格替换为下划线"
+  },
+  {
+    "sql": "SELECT tagId, tag, IF(INSTR(tag, 'story') > 0, 'Has Story', 'No Story') AS story_presence FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签中是否包含 'story'"
+  },
+  {
+    "sql": "SELECT tagId, tag, CONCAT('Tag: ', tag) AS prefixed_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，在标签前添加 'Tag: '"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag LIKE '%ing' THEN 'Present Participle' ELSE 'Other' END AS verb_form_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否以 'ing' 结尾（近似现在分词判断）"
+  },
+  {
+    "sql": "SELECT tagId, tag, RIGHT(tag, 2) AS last_two_chars FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，提取标签的最后两个字符"
+  },
+  {
+    "sql": "SELECT tagId, tag, LTRIM(tag) AS left_trimmed_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，去除标签左侧的空格"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN CHAR_LENGTH(tag) > 8 AND INSTR(tag, 'adventure') > 0 THEN 'Long Adventure Tag' ELSE 'Other' END AS long_adventure_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断是否为长度大于 8 且包含 'adventure' 的标签并分类"
+  },
+  {
+    "sql": "SELECT tagId, tag, RTRIM(tag) AS right_trimmed_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，去除标签右侧的空格"
+  },
+  {
+    "sql": "SELECT tagId, tag, ASCII(LEFT(tag, 1)) AS first_letter_ascii FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，获取标签首字母的 ASCII 码值"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag REGEXP '[0 - 9]' THEN 'Has Number' ELSE 'No Number' END AS number_presence FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签中是否包含数字"
+  },
+  {
+    "sql": "SELECT tagId, tag, INSERT(tag, 3, 0, 'X') AS inserted_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，在标签的第 3 个位置插入 'X'"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag LIKE '%ful' THEN 'Adjective Form' ELSE 'Other' END AS adjective_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否以 'ful' 结尾（近似形容词判断）"
+  },
+  {
+    "sql": "SELECT tagId, tag, MID(tag, 2, 5) AS middle_five_chars FROM genome - tags WHERE CHAR_LENGTH(tag) >= 7",
+    "question": "查询基因组标签表中长度至少为 7 的标签编号、标签，提取标签从第 2 个字符开始的 5 个字符"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag = UPPER(tag) THEN 'All Upper' ELSE 'Not All Upper' END AS upper_case_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否全部为大写"
+  },
+  {
+    "sql": "SELECT tagId, tag, SOUNDEX(tag) AS tag_soundex FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，获取标签的 Soundex 编码"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag LIKE '%less' THEN 'Negative Adjective' ELSE 'Other' END AS negative_adjective_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否以 'less' 结尾（近似否定形容词判断）"
+  },
+  {
+    "sql": "SELECT tagId, tag, REVERSE(tag) AS reversed_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，反转标签"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN CHAR_LENGTH(tag) < 5 THEN 'Very Short Tag' ELSE 'Normal Tag' END AS very_short_tag_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否为非常短的标签（长度小于 5）"
+  },
+  {
+    "sql": "SELECT tagId, tag, ELT(1, tag) AS first_element_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，使用 ELT 函数获取标签（这里参数 1 表示第一个元素即标签本身）"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag REGEXP '^[A - Z]' AND tag REGEXP '[a - z]' THEN 'Mixed Case' ELSE 'Single Case' END AS case_mix_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断标签是否为大小写混合"
+  },
+  {
+    "sql": "SELECT tagId, tag, SUBSTRING_INDEX(tag, ' ', 1) AS first_word_tag FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，提取标签的第一个单词"
+  },
+  {
+    "sql": "SELECT tagId, tag, CASE WHEN tag LIKE '%y' AND CHAR_LENGTH(tag) > 2 THEN 'Possible Adjective' ELSE 'Other' END AS possible_adjective_check FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，判断长度大于 2 且以 'y' 结尾的标签是否可能为形容词"
+  },
+  {
+    "sql": "SELECT tagId, tag, FIELD(tag, 'action', 'adventure', 'comedy') AS tag_field_position FROM genome - tags",
+    "question": "查询基因组标签表中的标签编号、标签，查找标签在指定列表（'action', 'adventure', 'comedy'）中的位置"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NULL THEN 'No IMDb ID' ELSE 'Has IMDb ID' END AS imdb_status FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，判断是否有 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IFNULL(imdbId, 'Unknown IMDb') AS imdb_fallback FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，如果 IMDb ID 为空则显示 'Unknown IMDb'"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CONCAT('IMDb: ', imdbId, ', TMDb: ', tmdbId) AS combined_ids FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，将两者组合成一个新字段"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId > 1000 THEN 'High TMDb ID' ELSE 'Low TMDb ID' END AS tmdb_id_category FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，根据 TMDb ID 是否大于 1000 进行分类"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, LEFT(imdbId, 2) AS imdb_prefix FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的电影编号、IMDb ID、TMDb ID，提取 IMDb ID 的前两个字符"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(imdbId LIKE 'tt%', 'Valid IMDb Prefix', 'Invalid IMDb Prefix') AS imdb_prefix_check FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，判断 IMDb ID 是否以 'tt' 开头"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId IS NULL AND imdbId IS NULL THEN 'No External IDs' ELSE 'Has External IDs' END AS external_id_status FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，判断是否没有外部 ID（IMDb 和 TMDb）"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, MOD(tmdbId, 5) AS tmdb_modulo_five FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的电影编号、IMDb ID、TMDb ID，计算 TMDb ID 对 5 取模的结果"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(imdbId IS NOT NULL AND tmdbId IS NOT NULL, 'Both IDs Present', 'Missing ID') AS id_presence_check FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，判断是否同时存在 IMDb 和 TMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId BETWEEN 500 AND 1500 THEN 'Mid - Range TMDb' ELSE 'Outside Mid - Range' END AS tmdb_mid_range_check FROM links",
+    "question": "查询链接表中的电影编号、IMDb ID、TMDb ID，判断 TMDb ID 是否在 500 到 1500 之间"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, RIGHT(tmdbId, 3) AS tmdb_last_three FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的电影编号、IMDb ID、TMDb ID，提取 TMDb ID 的最后三个字符"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN LENGTH(imdbId) > 8 THEN 'Long IMDb ID' ELSE 'Short IMDb ID' END AS imdb_length_category FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的记录，根据 IMDb ID 长度分为长和短类别"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, ABS(tmdbId - 1000) AS distance_from_1000 FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，计算 TMDb ID 与 1000 的距离"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId REGEXP '^tt[0-9]{7}$' THEN 'Valid Format' ELSE 'Invalid Format' END AS imdb_format_check FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的记录，检查 IMDb ID 是否符合 'tt' 加 7 位数字的格式"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CEIL(tmdbId / 500) AS tmdb_group FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，将 TMDb ID 按每 500 分组"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(tmdbId > (SELECT AVG(tmdbId) FROM links WHERE tmdbId IS NOT NULL), 'Above Average', 'Below Average') AS tmdb_avg_comparison FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，与 TMDb ID 的平均值比较，判断高于还是低于平均"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NOT NULL AND tmdbId > imdbId THEN 'TMDb > IMDb' ELSE 'Other' END AS id_comparison FROM links",
+    "question": "查询链接表的记录，比较 TMDb ID 和 IMDb ID 的大小（假设可比较）并分类"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, SUBSTRING(imdbId, 3) AS imdb_numbers FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的记录，提取 IMDb ID 中 'tt' 之后的数字部分"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId % 2 = 0 THEN 'Even TMDb ID' ELSE 'Odd TMDb ID' END AS tmdb_parity FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，判断 TMDb ID 是偶数还是奇数"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(imdbId IS NULL, 0, 1) AS has_imdb_flag FROM links",
+    "question": "查询链接表的记录，用标志位表示是否有 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId > 2000 AND imdbId LIKE 'tt%' THEN 'High TMDb & Valid IMDb' ELSE 'Other' END AS complex_condition FROM links",
+    "question": "查询链接表的记录，判断是否同时满足 TMDb ID 大于 2000 且 IMDb ID 以 'tt' 开头"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, ROUND(tmdbId / 100) * 100 AS rounded_tmdb FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，将 TMDb ID 四舍五入到百位"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NOT NULL AND CHAR_LENGTH(imdbId) = 9 THEN 'Standard IMDb Length' ELSE 'Non - Standard' END AS imdb_length_standard FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的记录，判断 IMDb ID 长度是否为标准的 9 位"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, POWER(tmdbId, 0.5) AS tmdb_sqrt FROM links WHERE tmdbId IS NOT NULL AND tmdbId >= 0",
+    "question": "查询链接表中 TMDb ID 不为空且非负的记录，计算 TMDb ID 的平方根"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId LIKE 'tt[0-9]{3}%' THEN 'Three - digit Start' ELSE 'Other' END AS imdb_start_digits FROM links WHERE imdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 不为空的记录，判断 IMDb ID 是否以 3 位数字开头"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(tmdbId < 500, 'Low TMDb', 'High TMDb') AS tmdb_low_high FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，根据 TMDb ID 是否小于 500 分为高低类别"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NULL AND tmdbId > 1500 THEN 'No IMDb, High TMDb' ELSE 'Other' END AS specific_case FROM links",
+    "question": "查询链接表的记录，判断是否没有 IMDb ID 且 TMDb ID 大于 1500"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, LEAST(COALESCE(tmdbId, 0), 2000) AS capped_tmdb FROM links",
+    "question": "查询链接表的记录，将 TMDb ID 上限设为 2000（若为空则视为 0）"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NOT NULL AND tmdbId % 10 = 0 THEN 'Valid IMDb & TMDb End 0' ELSE 'Other' END AS special_condition FROM links",
+    "question": "查询链接表的记录，判断是否有有效的 IMDb ID 且 TMDb ID 以 0 结尾"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, GREATEST(COALESCE(imdbId, '0'), 'tt1000') AS imdb_minimum FROM links",
+    "question": "查询链接表的记录，确保 IMDb ID 不小于 'tt1000'（若为空则视为 '0'）"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId > 1200 AND imdbId IS NOT NULL AND CHAR_LENGTH(imdbId) < 9 THEN 'High TMDb, Short IMDb' ELSE 'Other' END AS unique_condition FROM links",
+    "question": "查询链接表的记录，判断是否 TMDb ID 大于 1200、有 IMDb ID 且 IMDb ID 长度小于 9"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, ROUND((tmdbId - (SELECT MIN(tmdbId) FROM links WHERE tmdbId IS NOT NULL)) / ((SELECT MAX(tmdbId) FROM links WHERE tmdbId IS NOT NULL) - (SELECT MIN(tmdbId) FROM links WHERE tmdbId IS NOT NULL)), 2) AS tmdb_normalized FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询链接表中 TMDb ID 不为空的记录，对 TMDb ID 进行归一化处理并保留两位小数"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NOT NULL AND tmdbId < imdbId * 0.5 THEN 'TMDb << IMDb' ELSE 'Other' END AS extreme_id_ratio FROM links WHERE imdbId IS NOT NULL AND tmdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 和 TMDb ID 都不为空的记录，判断 TMDb ID 是否远小于 IMDb ID 的一半"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(tmdbId > 1800 AND imdbId LIKE 'tt[0-9]{6}%', 1, 0) AS special_flag FROM links",
+    "question": "查询链接表的记录，用标志位表示是否同时满足 TMDb ID 大于 1800 且 IMDb ID 以 6 位数字开头"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId IS NOT NULL AND tmdbId % 3 = 0 THEN 'TMDb Divisible by 3' ELSE 'Other' END AS tmdb_divisible_3 FROM links",
+    "question": "查询链接表的记录，判断 TMDb ID 是否能被 3 整除"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, SUBSTRING(tmdbId, 2, 2) AS tmdb_middle_two FROM links WHERE tmdbId IS NOT NULL AND CHAR_LENGTH(tmdbId) >= 4",
+    "question": "查询链接表中 TMDb ID 不为空且长度至少为 4 的记录，提取 TMDb ID 的中间两位数字"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN imdbId IS NULL AND tmdbId BETWEEN 800 AND 1200 THEN 'No IMDb, Mid TMDb' ELSE 'Other' END AS another_specific_case FROM links",
+    "question": "查询链接表的记录，判断是否没有 IMDb ID 且 TMDb ID 在 800 到 1200 之间"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, IF(imdbId IS NOT NULL AND tmdbId > imdbId + 500, 'TMDb Significantly Higher', 'Other') AS significant_id_difference FROM links WHERE imdbId IS NOT NULL AND tmdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 和 TMDb ID 都不为空的记录，判断 TMDb ID 是否比 IMDb ID 大 500 以上"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId IS NOT NULL AND CHAR_LENGTH(tmdbId) > 4 THEN 'Long TMDb ID' ELSE 'Short TMDb ID' END AS tmdb_length_category FROM links",
+    "question": "查询链接表的记录，根据 TMDb ID 长度分为长和短类别"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, ABS(imdbId - tmdbId) AS id_difference FROM links WHERE imdbId IS NOT NULL AND tmdbId IS NOT NULL",
+    "question": "查询链接表中 IMDb ID 和 TMDb ID 都不为空的记录，计算两者的差值的绝对值"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId, CASE WHEN tmdbId > 2500 AND imdbId IS NOT NULL AND LEFT(imdbId, 4) = 'tt12' THEN 'High TMDb, Specific IMDb' ELSE 'Other' END AS complex_specific_condition FROM links",
+    "question": "查询链接表的记录，判断是否 TMDb ID 大于 2500、有 IMDb ID 且 IMDb ID 以 'tt12' 开头"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating >= 4 THEN 'High Rating' WHEN rating >= 2 THEN 'Medium Rating' ELSE 'Low Rating' END AS rating_category FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分分为高、中、低类别"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, ROUND(rating * 2) / 2 AS half_star_rounded_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分四舍五入到半星"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating > (SELECT AVG(rating) FROM ratings), 'Above Average', 'Below Average') AS rating_avg_comparison FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，与整体平均评分比较，判断高于还是低于平均"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating IN (1, 2, 3) THEN 'Low Range Rating' ELSE 'High Range Rating' END AS rating_range_category FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分分为低范围和高范围类别"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CEIL(rating) AS ceiling_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，对评分向上取整"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, FLOOR(rating) AS floor_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，对评分向下取整"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating = 5, 'Perfect Rating', 'Not Perfect') AS perfect_rating_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否为满分 5 分"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating BETWEEN 2.5 AND 3.5 THEN 'Neutral Rating' ELSE 'Non - Neutral' END AS neutral_rating_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否为中立评分（2.5 到 3.5 之间）"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, POWER(rating, 2) AS squared_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分的平方"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, SQRT(rating) AS square_root_rating FROM ratings WHERE rating >= 0",
+    "question": "查询评分表中评分大于等于 0 的记录，计算评分的平方根"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating < 1.5 THEN 'Very Low Rating' ELSE 'Normal Rating' END AS very_low_rating_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否为极低评分（小于 1.5）"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, ROUND(rating, 1) AS one_decimal_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分保留一位小数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating > 3 AND userId % 2 = 0, 'High Rating & Even User', 'Other') AS custom_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分大于 3 且用户编号为偶数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating * userId > 100 THEN 'High Product' ELSE 'Low Product' END AS rating_user_product_category FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分与用户编号的乘积并分类"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, LEAST(rating, 4.5) AS capped_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分上限设为 4.5"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, GREATEST(rating, 1) AS floored_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分下限设为 1"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating < 2 AND movieId % 3 = 0 THEN 'Low Rating & MovieDiv3' ELSE 'Other' END AS specific_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分小于 2 且电影编号能被 3 整除"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, LOG(rating + 1) AS log_rating FROM ratings WHERE rating >= 0",
+    "question": "查询评分表中评分大于等于 0 的记录，计算评分加 1 后的自然对数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating BETWEEN 3.5 AND 4.5 AND userId > 50 THEN 'Mid - High Rating & High User' ELSE 'Other' END AS complex_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分在 3.5 到 4.5 之间且用户编号大于 50"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, ROUND(rating * 10) / 10 AS single_decimal_rounded_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分四舍五入到一位小数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating < AVG(rating) OVER (PARTITION BY userId), 'Below User Avg', 'Above User Avg') AS user_avg_comparison FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，与每个用户自身的平均评分比较，判断高于还是低于平均"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating = 0 THEN 'Zero Rating' ELSE 'Non - Zero Rating' END AS zero_rating_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断评分是否为 0"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, MOD(rating * 10, 5) AS rating_modulo FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分乘以 10 后对 5 取模的结果"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating > 4 AND rating < 5 THEN 'Almost Perfect' ELSE 'Not Almost' END AS almost_perfect_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断评分是否接近满分（大于 4 小于 5）"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating < 1 AND userId % 5 = 0, 'Very Low Rating & UserDiv5', 'Other') AS strict_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分小于 1 且用户编号能被 5 整除"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating * movieId < 20 THEN 'Low Product RatingMovie' ELSE 'High Product RatingMovie' END AS rating_movie_product FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分与电影编号的乘积并分类"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CEILING(rating * 2) / 2 AS half_star_ceiling_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分向上取整到半星"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating > 3.8 AND userId < 30, 'High Rating & Low User', 'Other') AS unique_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分大于 3.8 且用户编号小于 30"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating BETWEEN 2 AND 2.5 THEN 'Low - Mid Rating' ELSE 'Other Rating' END AS low_mid_rating_category FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断评分是否在 2 到 2.5 之间"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, POWER(rating, 3) AS cubed_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分的立方"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating < 1.2 AND movieId > 200 THEN 'Ultra Low Rating & High Movie' ELSE 'Other' END AS extreme_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分小于 1.2 且电影编号大于 200"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, ROUND(rating, 0) AS whole_number_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分四舍五入到整数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating > (SELECT MAX(rating) FROM ratings WHERE userId = ratings.userId) - 1, 'Near Max User Rating', 'Not Near') AS near_max_user_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否接近该用户的最高评分"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating * userId < 50 THEN 'Low Combined Value' ELSE 'High Combined Value' END AS combined_value_category FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，计算评分与用户编号的乘积并分为高低类别"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, SQRT(POWER(rating, 2) + 1) AS complex_rating_calculation FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，进行一个复杂的计算"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating BETWEEN 3.2 AND 3.7 AND movieId % 4 = 0 THEN 'Mid - Rating & MovieDiv4' ELSE 'Other' END AS specific_mid_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分在 3.2 到 3.7 之间且电影编号能被 4 整除"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, TRUNCATE(rating * 10, 0) / 10 AS truncated_single_decimal_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分截断到一位小数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating < 0.5 AND userId > 100, 'Extremely Low Rating & High User', 'Other') AS extreme_case FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分小于 0.5 且用户编号大于 100"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating > 4.2 AND movieId < 150 THEN 'High Rating & Low Movie' ELSE 'Other' END AS high_rating_low_movie FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分大于 4.2 且电影编号小于 150"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CEIL(rating * 100) / 100 AS two_decimal_ceiling_rating FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分向上取整到两位小数"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, IF(rating < AVG(rating) OVER (PARTITION BY movieId), 'Below Movie Avg', 'Above Movie Avg') AS movie_avg_comparison FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，与每部电影的平均评分比较，判断高于还是低于平均"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating = 1 THEN 'Single Star Rating' ELSE 'Other Rating' END AS single_star_check FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断评分是否为 1 星"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, MOD(rating * 100, 10) AS rating_last_digit FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，获取评分乘以 100 后的最后一位数字"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, CASE WHEN rating > 4.6 AND userId % 7 = 0 THEN 'Super High Rating & UserDiv7' ELSE 'Other' END AS super_condition FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，判断是否评分大于 4.6 且用户编号能被 7 整除"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating, ROUND(rating / 0.5) * 0.5 AS half_star_round_down FROM ratings",
+    "question": "查询评分表中的用户编号、电影编号、评分，将评分向下取整到半星"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN CHAR_LENGTH(tag) > 10 THEN 'Long Tag' ELSE 'Short Tag' END AS tag_length_category FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，根据标签长度分为长标签和短标签类别"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, UPPER(tag) AS upper_case_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，将标签转换为大写"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, REVERSE(tag) AS reversed_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，反转标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%fun%' THEN 'Fun - Related' ELSE 'Non - Fun' END AS fun_related_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否与 'fun' 相关"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSTR(tag, 'movie') AS movie_position FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，查找 'movie' 在标签中首次出现的位置"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, SUBSTRING(tag, 1, 3) AS tag_prefix FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，提取标签的前 3 个字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '^[A - Z]' THEN 'Starts with Capital' ELSE 'Starts with Lowercase' END AS capital_start_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以大写字母开头"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, REPLACE(tag, ' ', '-') AS space_to_dash_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，将标签中的空格替换为连字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, IF(INSTR(tag, 'epic') > 0, 'Epic Tag', 'Non - Epic Tag') AS epic_tag_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否包含 'epic'"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CONCAT('Tag: ', tag) AS prefixed_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，在标签前添加 'Tag: '"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%ing' THEN 'Verb - Like' ELSE 'Non - Verb - Like' END AS verb_like_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'ing' 结尾（近似动词判断）"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, RIGHT(tag, 2) AS tag_suffix FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，提取标签的最后 2 个字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, LTRIM(tag) AS left_trimmed_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，去除标签左侧的空格"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN CHAR_LENGTH(tag) < 5 THEN 'Very Short Tag' ELSE 'Normal Tag' END AS very_short_tag_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否为非常短的标签（长度小于 5）"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, RTRIM(tag) AS right_trimmed_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，去除标签右侧的空格"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, ASCII(LEFT(tag, 1)) AS first_letter_ascii FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，获取标签首字母的 ASCII 码值"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '[0 - 9]' THEN 'Has Number' ELSE 'No Number' END AS number_presence_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签中是否包含数字"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSERT(tag, 2, 0, 'X') AS inserted_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，在标签的第 2 个位置插入 'X'"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%ful' THEN 'Adjective - Like' ELSE 'Non - Adjective - Like' END AS adjective_like_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'ful' 结尾（近似形容词判断）"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, MID(tag, 3, 4) AS middle_four_chars FROM tags WHERE CHAR_LENGTH(tag) >= 7",
+    "question": "查询标签表中长度至少为 7 的记录，提取标签从第 3 个字符开始的 4 个字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag = LOWER(tag) THEN 'All Lowercase' ELSE 'Not All Lowercase' END AS lowercase_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否全部为小写"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, SOUNDEX(tag) AS tag_soundex FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，获取标签的 Soundex 编码"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%less' THEN 'Negative - Adjective - Like' ELSE 'Non - Negative - Adjective - Like' END AS negative_adjective_like_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'less' 结尾（近似否定形容词判断）"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CHAR_LENGTH(tag) AS tag_length FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签及其长度"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '^[aeiou]' THEN 'Vowel - Start' ELSE 'Consonant - Start' END AS vowel_start_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以元音字母开头"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, SUBSTRING_INDEX(tag, ' ', -1) AS last_word_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，提取标签的最后一个单词"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%able' THEN 'Able - Ending' ELSE 'Non - Able - Ending' END AS able_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'able' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, IF(INSTR(tag, 'story') > 0 AND CHAR_LENGTH(tag) > 6, 'Long Story Tag', 'Other Tag') AS long_story_tag_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断是否为包含 'story' 且长度大于 6 的标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, LOWER(LEFT(tag, 1)) AS first_letter_lower FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，将标签的首字母转换为小写"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '[^a-zA-Z0-9 ]' THEN 'Has Special Char' ELSE 'No Special Char' END AS special_char_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签中是否包含特殊字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, REPEAT(tag, 3) AS tripled_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，将标签重复三次"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%some' THEN 'Some - Ending' ELSE 'Non - Some - Ending' END AS some_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'some' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSTR(tag, 'character') AS character_position FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，查找 'character' 在标签中首次出现的位置"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag = UPPER(tag) AND CHAR_LENGTH(tag) > 4 THEN 'All Upper Long' ELSE 'Other' END AS all_upper_long_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断是否为全部大写且长度大于 4 的标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, TRIM(BOTH '-' FROM tag) AS trimmed_dash_tag FROM tags WHERE tag LIKE '%-%'",
+    "question": "查询标签表中包含连字符的记录，去除标签首尾的连字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%matic' THEN 'Matic - Ending' ELSE 'Non - Matic - Ending' END AS matic_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'matic' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, FIELD(tag, 'great', 'amazing', 'terrible') AS tag_field_position FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，查找标签在指定列表（'great', 'amazing', 'terrible'）中的位置"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '^[0-9]' THEN 'Number - Start' ELSE 'Non - Number - Start' END AS number_start_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以数字开头"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSERT(tag, CHAR_LENGTH(tag) - 1, 0, 'X') AS insert_before_last_char FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，在标签倒数第二个位置插入 'X'"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%ish' THEN 'Ish - Ending' ELSE 'Non - Ish - Ending' END AS ish_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'ish' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, ELT(2, tag, 'default') AS second_element_fallback FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，使用 ELT 函数获取标签（若为空则返回 'default'）"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '[A-Z]{2,}' THEN 'Consecutive Caps' ELSE 'No Consecutive Caps' END AS consecutive_caps_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签中是否有连续两个或以上的大写字母"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, SUBSTRING(tag, FLOOR(CHAR_LENGTH(tag) / 2), 2) AS middle_two_chars FROM tags WHERE CHAR_LENGTH(tag) >= 4",
+    "question": "查询标签表中长度至少为 4 的记录，提取标签中间的两个字符"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%wise' THEN 'Wise - Ending' ELSE 'Non - Wise - Ending' END AS wise_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'wise' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, SOUNDEX(LEFT(tag, 4)) AS first_four_soundex FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，获取标签前四个字符的 Soundex 编码"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '^[^a-zA-Z]' THEN 'Non - Alpha Start' ELSE 'Alpha Start' END AS non_alpha_start_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否不以字母开头"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, REPLACE(tag, 'good', 'excellent') AS good_to_excellent_tag FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，将标签中的 'good' 替换为 'excellent'"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%ward' THEN 'Ward - Ending' ELSE 'Non - Ward - Ending' END AS ward_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'ward' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSTR(tag, UPPER('action')) AS upper_action_position FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，查找大写 'ACTION' 在标签中首次出现的位置"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '[0-9]{2,}' THEN 'Consecutive Numbers' ELSE 'No Consecutive Numbers' END AS consecutive_numbers_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签中是否有连续两个或以上的数字"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, INSERT(tag, 1, 0, 'pre-') AS prefixed_tag_new FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，在标签前添加 'pre - '"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag LIKE '%ous' THEN 'Ous - Ending' ELSE 'Non - Ous - Ending' END AS ous_ending_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否以 'ous' 结尾"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, MATCH(tag) AGAINST('thriller' IN NATURAL LANGUAGE MODE) AS thriller_match_score FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，使用全文搜索计算与 'thriller' 的匹配得分"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag, CASE WHEN tag REGEXP '^[A-Z][a-z]+$' THEN 'Proper Noun - Like' ELSE 'Non - Proper Noun - Like' END AS proper_noun_like_check FROM tags",
+    "question": "查询标签表中的用户编号、电影编号、标签，判断标签是否类似专有名词（首字母大写，其余小写）"
+  }
+]

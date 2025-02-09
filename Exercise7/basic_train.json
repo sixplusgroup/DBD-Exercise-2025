@@ -1,0 +1,929 @@
+[{
+  "ddl": "CREATE TABLE `genome-scores`  (\n  `movieId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `tagId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `relevance` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select tagId, relevance from genome-scores where movieId = 1",
+  "question": "查询电影编号为1的基因组评分以及对应的标签id"
+}, {
+  "ddl": "CREATE TABLE `genome-tags`  (\n  `tagId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select tagId, tag from genome-tags",
+  "question": "查询所有基因组标签数据"
+},{
+  "ddl": "CREATE TABLE `movies`  (\n  `movieId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `genres` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select movieId, title, genres from movies",
+  "question": "查询所有电影相关信息，包括电影编号，标题和电影类型"
+},{
+  "ddl": "CREATE TABLE `ratings`  (\n  `userId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `movieId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `rating` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `timestamp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select movieId, rating, timestamp from ratings where userId = 1",
+  "question": "查询用户编号为1的对所有电影的评分"
+},{
+  "ddl": "CREATE TABLE `tags`  (\n  `userId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `movieId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `timestamp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select userId, movieId, tag, timestamp from tags where movieId = 589",
+  "question": "查询所有用户针对电影编号为589的自定义标签信息"
+},{
+  "ddl": "CREATE TABLE `links`  (\n  `movieId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `imdbId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,\n  `tmdbId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL\n) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;",
+  "sql": "select movieId, imdbId, tmdbId from links where movieId = 99",
+  "question": "查询电影编号为99在imd数据库和tmd数据库中对应的电影编号"
+},  {
+    "sql": "SELECT movieId, title FROM movies",
+    "question": "查询所有电影的编号和标题"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags",
+    "question": "查询所有基因组标签的编号和标签名称"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings",
+    "question": "查询所有用户对电影的评分记录"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links",
+    "question": "查询所有电影在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, relevance FROM genome-scores",
+    "question": "查询所有电影的基因组评分"
+  },
+  {
+    "sql": "SELECT movieId, title, genres FROM movies",
+    "question": "查询所有电影的编号、标题和类型"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags",
+    "question": "查询所有用户对电影的自定义标签"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Action'",
+    "question": "查询所有动作类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Drama'",
+    "question": "查询所有剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Comedy'",
+    "question": "查询所有喜剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Horror'",
+    "question": "查询所有恐怖类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Sci-Fi'",
+    "question": "查询所有科幻类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Romance'",
+    "question": "查询所有爱情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Adventure'",
+    "question": "查询所有冒险类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Animation'",
+    "question": "查询所有动画类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Thriller'",
+    "question": "查询所有惊悚类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Documentary'",
+    "question": "查询所有纪录片类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Fantasy'",
+    "question": "查询所有奇幻类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Mystery'",
+    "question": "查询所有悬疑类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Crime'",
+    "question": "查询所有犯罪类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Family'",
+    "question": "查询所有家庭类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'War'",
+    "question": "查询所有战争类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Music'",
+    "question": "查询所有音乐类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'History'",
+    "question": "查询所有历史类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Western'",
+    "question": "查询所有西部类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Biography'",
+    "question": "查询所有传记类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Musical'",
+    "question": "查询所有音乐剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Sport'",
+    "question": "查询所有体育类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Short'",
+    "question": "查询所有短片类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Film-Noir'",
+    "question": "查询所有黑色电影类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Adult'",
+    "question": "查询所有成人类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'News'",
+    "question": "查询所有新闻类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Reality-TV'",
+    "question": "查询所有真人秀类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Talk-Show'",
+    "question": "查询所有脱口秀类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Game-Show'",
+    "question": "查询所有游戏节目类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Experimental'",
+    "question": "查询所有实验类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Animation|Comedy'",
+    "question": "查询所有动画喜剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Action|Adventure'",
+    "question": "查询所有动作冒险类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Comedy|Romance'",
+    "question": "查询所有喜剧爱情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Drama|Romance'",
+    "question": "查询所有剧情爱情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Horror|Thriller'",
+    "question": "查询所有恐怖惊悚类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Sci-Fi|Action'",
+    "question": "查询所有科幻动作类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Crime|Drama'",
+    "question": "查询所有犯罪剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Mystery|Thriller'",
+    "question": "查询所有悬疑惊悚类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Fantasy|Adventure'",
+    "question": "查询所有奇幻冒险类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Family|Animation'",
+    "question": "查询所有家庭动画类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'War|Drama'",
+    "question": "查询所有战争剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Music|Drama'",
+    "question": "查询所有音乐剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'History|Drama'",
+    "question": "查询所有历史剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Western|Action'",
+    "question": "查询所有西部动作类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Biography|Drama'",
+    "question": "查询所有传记剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Musical|Comedy'",
+    "question": "查询所有音乐喜剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Sport|Drama'",
+    "question": "查询所有体育剧情类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Short|Comedy'",
+    "question": "查询所有短片喜剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Film-Noir|Crime'",
+    "question": "查询所有黑色电影犯罪类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Adult|Comedy'",
+    "question": "查询所有成人喜剧类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'News|Documentary'",
+    "question": "查询所有新闻纪录片类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Reality-TV|Documentary'",
+    "question": "查询所有真人秀纪录片类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Talk-Show|News'",
+    "question": "查询所有脱口秀新闻类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Game-Show|Reality-TV'",
+    "question": "查询所有游戏节目真人秀类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Experimental|Short'",
+    "question": "查询所有实验短片类型电影的编号和标题"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores",
+    "question": "查询所有基因组评分的标签编号和相关性"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 1",
+    "question": "查询电影编号为1的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE relevance > 0.5",
+    "question": "查询所有相关性大于0.5的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE relevance < 0.2",
+    "question": "查询所有相关性小于0.2的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE relevance BETWEEN 0.3 AND 0.7",
+    "question": "查询所有相关性在0.3到0.7之间的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores ORDER BY relevance DESC",
+    "question": "查询所有基因组评分并按相关性降序排列"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores ORDER BY relevance ASC",
+    "question": "查询所有基因组评分并按相关性升序排列"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 2",
+    "question": "查询电影编号为2的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 3",
+    "question": "查询电影编号为3的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 4",
+    "question": "查询电影编号为4的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 5",
+    "question": "查询电影编号为5的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 6",
+    "question": "查询电影编号为6的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 7",
+    "question": "查询电影编号为7的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 8",
+    "question": "查询电影编号为8的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 9",
+    "question": "查询电影编号为9的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 10",
+    "question": "查询电影编号为10的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 11",
+    "question": "查询电影编号为11的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 12",
+    "question": "查询电影编号为12的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 13",
+    "question": "查询电影编号为13的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 14",
+    "question": "查询电影编号为14的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 15",
+    "question": "查询电影编号为15的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 16",
+    "question": "查询电影编号为16的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 17",
+    "question": "查询电影编号为17的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 18",
+    "question": "查询电影编号为18的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 19",
+    "question": "查询电影编号为19的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 20",
+    "question": "查询电影编号为20的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 21",
+    "question": "查询电影编号为21的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 22",
+    "question": "查询电影编号为22的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 23",
+    "question": "查询电影编号为23的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 24",
+    "question": "查询电影编号为24的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, relevance FROM genome-scores WHERE movieId = 25",
+    "question": "查询电影编号为25的基因组评分"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags",
+    "question": "查询所有基因组标签的编号和标签名称"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%action%'",
+    "question": "查询标签名称包含 'action' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%comedy%'",
+    "question": "查询标签名称包含 'comedy' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%drama%'",
+    "question": "查询标签名称包含 'drama' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%horror%'",
+    "question": "查询标签名称包含 'horror' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%sci-fi%'",
+    "question": "查询标签名称包含 'sci-fi' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%romance%'",
+    "question": "查询标签名称包含 'romance' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%adventure%'",
+    "question": "查询标签名称包含 'adventure' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%animation%'",
+    "question": "查询标签名称包含 'animation' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%thriller%'",
+    "question": "查询标签名称包含 'thriller' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%documentary%'",
+    "question": "查询标签名称包含 'documentary' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%fantasy%'",
+    "question": "查询标签名称包含 'fantasy' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%mystery%'",
+    "question": "查询标签名称包含 'mystery' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%crime%'",
+    "question": "查询标签名称包含 'crime' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%family%'",
+    "question": "查询标签名称包含 'family' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%war%'",
+    "question": "查询标签名称包含 'war' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%music%'",
+    "question": "查询标签名称包含 'music' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%history%'",
+    "question": "查询标签名称包含 'history' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%western%'",
+    "question": "查询标签名称包含 'western' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%biography%'",
+    "question": "查询标签名称包含 'biography' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%musical%'",
+    "question": "查询标签名称包含 'musical' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%sport%'",
+    "question": "查询标签名称包含 'sport' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%short%'",
+    "question": "查询标签名称包含 'short' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%film-noir%'",
+    "question": "查询标签名称包含 'film-noir' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%adult%'",
+    "question": "查询标签名称包含 'adult' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%news%'",
+    "question": "查询标签名称包含 'news' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%reality-tv%'",
+    "question": "查询标签名称包含 'reality-tv' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%talk-show%'",
+    "question": "查询标签名称包含 'talk-show' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%game-show%'",
+    "question": "查询标签名称包含 'game-show' 的基因组标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome-tags WHERE tag LIKE '%experimental%'",
+    "question": "查询标签名称包含 'experimental' 的基因组标签"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links",
+    "question": "查询所有电影在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links",
+    "question": "查询所有电影在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links",
+    "question": "查询所有电影在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 1",
+    "question": "查询电影编号为1在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 1",
+    "question": "查询电影编号为1在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 1",
+    "question": "查询电影编号为1在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 2",
+    "question": "查询电影编号为2在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 2",
+    "question": "查询电影编号为2在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 2",
+    "question": "查询电影编号为2在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 3",
+    "question": "查询电影编号为3在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 3",
+    "question": "查询电影编号为3在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 3",
+    "question": "查询电影编号为3在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 4",
+    "question": "查询电影编号为4在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 4",
+    "question": "查询电影编号为4在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 4",
+    "question": "查询电影编号为4在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 5",
+    "question": "查询电影编号为5在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 5",
+    "question": "查询电影编号为5在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 5",
+    "question": "查询电影编号为5在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 6",
+    "question": "查询电影编号为6在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 6",
+    "question": "查询电影编号为6在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 6",
+    "question": "查询电影编号为6在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 7",
+    "question": "查询电影编号为7在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 7",
+    "question": "查询电影编号为7在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 7",
+    "question": "查询电影编号为7在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 8",
+    "question": "查询电影编号为8在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 8",
+    "question": "查询电影编号为8在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 8",
+    "question": "查询电影编号为8在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 9",
+    "question": "查询电影编号为9在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 9",
+    "question": "查询电影编号为9在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 9",
+    "question": "查询电影编号为9在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId = 10",
+    "question": "查询电影编号为10在 IMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE movieId = 10",
+    "question": "查询电影编号为10在 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT movieId, imdbId, tmdbId FROM links WHERE movieId = 10",
+    "question": "查询电影编号为10在 IMDb 和 TMDb 数据库中的编号"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings",
+    "question": "查询所有用户对电影的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 1",
+    "question": "查询用户编号为1的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 2",
+    "question": "查询用户编号为2的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 3",
+    "question": "查询用户编号为3的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 4",
+    "question": "查询用户编号为4的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 5",
+    "question": "查询用户编号为5的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 6",
+    "question": "查询用户编号为6的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 7",
+    "question": "查询用户编号为7的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 8",
+    "question": "查询用户编号为8的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 9",
+    "question": "查询用户编号为9的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 10",
+    "question": "查询用户编号为10的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 1",
+    "question": "查询电影编号为1的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 2",
+    "question": "查询电影编号为2的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 3",
+    "question": "查询电影编号为3的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 4",
+    "question": "查询电影编号为4的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 5",
+    "question": "查询电影编号为5的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 6",
+    "question": "查询电影编号为6的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 7",
+    "question": "查询电影编号为7的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 8",
+    "question": "查询电影编号为8的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 9",
+    "question": "查询电影编号为9的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE movieId = 10",
+    "question": "查询电影编号为10的所有评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE rating = 5",
+    "question": "查询所有满分为5的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE rating = 1",
+    "question": "查询所有最低分为1的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE rating BETWEEN 3 AND 4",
+    "question": "查询所有评分在3到4之间的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings ORDER BY rating DESC",
+    "question": "查询所有评分记录并按评分降序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings ORDER BY rating ASC",
+    "question": "查询所有评分记录并按评分升序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 1 AND movieId = 1",
+    "question": "查询用户编号为1对电影编号为1的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 2 AND movieId = 2",
+    "question": "查询用户编号为2对电影编号为2的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 3 AND movieId = 3",
+    "question": "查询用户编号为3对电影编号为3的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 4 AND movieId = 4",
+    "question": "查询用户编号为4对电影编号为4的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, rating FROM ratings WHERE userId = 5 AND movieId = 5",
+    "question": "查询用户编号为5对电影编号为5的评分记录"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags",
+    "question": "查询所有用户对电影的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 1",
+    "question": "查询用户编号为1的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 2",
+    "question": "查询用户编号为2的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 3",
+    "question": "查询用户编号为3的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 4",
+    "question": "查询用户编号为4的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 5",
+    "question": "查询用户编号为5的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 6",
+    "question": "查询用户编号为6的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 7",
+    "question": "查询用户编号为7的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 8",
+    "question": "查询用户编号为8的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 9",
+    "question": "查询用户编号为9的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE userId = 10",
+    "question": "查询用户编号为10的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 1",
+    "question": "查询电影编号为1的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 2",
+    "question": "查询电影编号为2的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 3",
+    "question": "查询电影编号为3的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 4",
+    "question": "查询电影编号为4的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 5",
+    "question": "查询电影编号为5的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 6",
+    "question": "查询电影编号为6的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 7",
+    "question": "查询电影编号为7的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 8",
+    "question": "查询电影编号为8的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 9",
+    "question": "查询电影编号为9的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE movieId = 10",
+    "question": "查询电影编号为10的所有自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%action%'",
+    "question": "查询标签名称包含 'action' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%comedy%'",
+    "question": "查询标签名称包含 'comedy' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%drama%'",
+    "question": "查询标签名称包含 'drama' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%horror%'",
+    "question": "查询标签名称包含 'horror' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%sci-fi%'",
+    "question": "查询标签名称包含 'sci-fi' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%romance%'",
+    "question": "查询标签名称包含 'romance' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%adventure%'",
+    "question": "查询标签名称包含 'adventure' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%animation%'",
+    "question": "查询标签名称包含 'animation' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%thriller%'",
+    "question": "查询标签名称包含 'thriller' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%documentary%'",
+    "question": "查询标签名称包含 'documentary' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%fantasy%'",
+    "question": "查询标签名称包含 'fantasy' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%mystery%'",
+    "question": "查询标签名称包含 'mystery' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%crime%'",
+    "question": "查询标签名称包含 'crime' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%family%'",
+    "question": "查询标签名称包含 'family' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%war%'",
+    "question": "查询标签名称包含 'war' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%music%'",
+    "question": "查询标签名称包含 'music' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%history%'",
+    "question": "查询标签名称包含 'history' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%western%'",
+    "question": "查询标签名称包含 'western' 的自定义标签"
+  },
+  {
+    "sql": "SELECT userId, movieId, tag FROM tags WHERE tag LIKE '%biography%'",
+    "question": "查询标签名称包含 'biography' 的自定义标签"
+  }
+]
