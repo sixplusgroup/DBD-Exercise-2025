@@ -147,3 +147,5 @@ for data in training_data:
 ```
 
 其中”ddl” 描述表结构，”question”描述提问问题，”sql” 描述针对该问题对应的SQL语句
+
+数据集链接：https://files.grouplens.org/datasets/movielens/ml-latest.zip
