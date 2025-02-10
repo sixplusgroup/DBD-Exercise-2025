@@ -73,7 +73,7 @@ VersionChain 相当于变量，Data 相当于该变量的值。比如变量 A �
 
 例如：事务 1 读取某表中的数据 A=20，事务 1 修改 A=A-1，事务 2 读取到 A = 19,事务 1 回滚导致对 A 的修改并未提交到数据库， A 的值还是 20。
 
-![脏读](src\main\resources\images\脏读.png)
+![脏读](https://javaguide.cn/assets/concurrency-consistency-issues-dirty-reading-C1rL9lNt.png)
 
 本实验中，将 mvcc 和 REPEATABLE-READ(可重复读) 的要求相结合，可以避免 **脏读**。对应的测试用例为 `testDirtyRead()` 。
 
@@ -83,7 +83,7 @@ VersionChain 相当于变量，Data 相当于该变量的值。比如变量 A �
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 先修改 A=A-1，事务 2 后来也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。
 
-![丢失修改](src\main\resources\images\丢失修改.png)
+![丢失修改](https://javaguide.cn/assets/concurrency-consistency-issues-missing-modifications-D4pIxvwj.png)
 
 本实验不能避免丢失修改，对应的测试用例为 `testLostToModify()`。要防止丢失修改，有以下措施：
 
@@ -105,7 +105,7 @@ VersionChain 相当于变量，Data 相当于该变量的值。比如变量 A �
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 再次读取 A =19，此时读取的结果和第一次读取的结果不同。
 
-![不可重复读](src\main\resources\images\不可重复读.png)
+![不可重复读](https://javaguide.cn/assets/concurrency-consistency-issues-unrepeatable-read-RYuQTZvh.png)
 
 本实验中，将 mvcc 和 REPEATABLE-READ(可重复读) 的要求相结合，可以避免 **不可重复读**。对应的测试用例为 `testUnrepeatableRead()` 。
 
