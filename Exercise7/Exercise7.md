@@ -21,7 +21,7 @@
 - Vanna：用于 SQL 生成和训练
 - Google Gemini：作为大语言模型生成 SQL
 
-**数据库：**MySQL
+**数据库**：MySQL
 
 **实验环境：**
 
@@ -92,6 +92,12 @@
 
 
 ### **所需资源**
+
+**Vanna使用方法**：https://vanna.ai/docs/
+
+**获取gemini的api_key方法**：https://7b5krb21xg.apifox.cn/
+
+
 
 **所需要提问的问题：**
 
