@@ -30,7 +30,7 @@
 
 ```
 正确与否需要比较benchmark，执行命令：
-python answer_evaulation.py --dev ../spider_data/dev.json --selected selected_questions.json --db ../spider_data/database --table ../spider_data/tables.json
+python evaluation.py --dev ../spider_data/dev.json --selected selected_questions.json --db ../spider_data/database --table ../spider_data/tables.json
 ```
 
 导入表
