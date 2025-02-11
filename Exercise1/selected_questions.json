@@ -1,0 +1,17 @@
+[
+    {
+        "db_id": "dog_kennels",
+        "question": "Which professionals live in the state of Indiana or have done treatment on more than 2 treatments? List his or her id, last name and cell phone.",
+        "pred_sql": "你的预测SQL1"
+    },
+    {
+        "db_id": "employee_hire_evaluation",
+        "question": "find the name of employee who was awarded the most times in the evaluation.",
+        "pred_sql": "你的预测SQL2"
+    },
+    {
+        "db_id": "student_transcripts_tracking", 
+        "question": "What is the date and id of the transcript with the least number of results?",
+        "pred_sql": "你的预测SQL3"
+    }
+]
