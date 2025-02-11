@@ -2,17 +2,48 @@
 
 ## 练习1 数据库准备实验
 
-0. 安装MySQL环境，选择8.0.41 <https://dev.mysql.com/downloads/mysql/>
-1. [https://yale-lily.github.io/spider](https://yale-lily.github.io/spider)
-2. 根据SQL benchmark出1-2题，先自己完成，使用AI工具生成SQL，指出使用的AI工具，以及如何构建SQL语句，以及构建多少种SQL。比较benchmark(开学前写完)，改错，获取最终答案，提供过程中使用的对话和总体时间。
-导入表
-3. 创建一个数据库，名称为提供的编号，并将 ratings.csv、movies.csv 和 links.csv 文件导入到数据库中
-4. 查看 ratings、movies、 links表中所有数据，并查询该表行数（可分两个 SQL 语句）。
-5. 完成数据检查，保证数据导入成功。
+### 环境准备
+
+- **安装 MySQL 8.4.4**（或当时的LTS 版本即可）  
+  下载地址：[MySQL 官网](https://dev.mysql.com/downloads/mysql/)
+- **安装 SQLite**  
+  下载地址：[SQLite 安装教程](https://www.runoob.com/sqlite/sqlite-installation.html)
+
+### 问题与SQL文件（`dev.json`）
+
+每个条目包含以下字段：
+
+- **`question`**：自然语言问题（如“查询英语非官方语言的国家的平均寿命”）
+- **`query`**：对应的完整SQL查询语句
+- **`db_id`**：关联的数据库ID
+- **`sql`**：解析后的SQL结构（嵌套字典，包含`SELECT`、`WHERE`等子句的抽象表示）
+- **附加字段**：
+
+  ```json
+  {
+    "question_toks": ["What", "is", "average", "life", ...],  // 分词后的问题文本
+    "query_toks": ["SELECT", "avg", "(", "LifeExpectancy", ...]  // 分词后的SQL词元
+  }
+
+1. 在spider/selected_questions.json中有三道题目。先自行完成，随后使用AI工具生成SQL，指出使用的AI工具，以及如何构建SQL语句，以及构建多少种SQL，提供**过程中使用的对话和总体时间**。
+
+    ```
+    正确与否需要比较benchmark，执行命令：
+    python evaluation.py --dev ..spider_data/dev.json --selected selected_questions.json --db ./spider_data/database --table ./spider_data/tables.json
+    ```
+
+### 导入movielens表
+
+2. 创建一个数据库，名称为学号，下载<https://files.grouplens.org/datasets/movielens/ml-latest.zip>并将 ratings.csv、movies.csv 和 links.csv 文件导入到数据库中。
+3. 连接 MySQL 数据库。
+4. 查看 ratings、movies、links表中的前五条数据，并查询每个表行数。
+5. 计算ratings打分之和。
+6. 计算movies有几部2023年的电影。
+7. 对links的imdbId计算该列值的 MD5。
 
 ## 练习2
 
-待定，如SQL Exercise练习等
+SQL Exercise练习，完成5道题目。
 
 ## 练习3 B+树实验手册
 
@@ -268,33 +299,42 @@ VersionChain 相当于变量，Data 相当于该变量的值。比如变量 A �
 
 ## 练习6 数据库日志管理实验
 
-### 实验目的
+### 实验背景和目的
 
-1. **理解和实现数据库事务**：学习如何使用 Java 实现数据库事务的基本操作，支持事务的提交、回滚功能。
-2. **实现日志管理系统**：理解写前日志（WAL）机制的工作原理，学会如何实现 `Redo` 和 `Undo`。
-3. **支持事务恢复**：通过日志文件，支持事务崩溃恢复。
+数据库管理系统通常会采用一些复杂的机制以确保在各种情况下数据不丢失且保持一致性。本次实验聚焦于实现一个简化的数据库日志管理系统，模拟数据库事务的处理过程以及日志的记录和恢复，帮助理解数据库事务和日志管理的基本原理。
+
+假设我们正在开发一个简单的内存数据库系统，该系统主要用于存储键值对（key - value）数据。为了确保数据库在各种异常情况下的数据完整性，我们需要实现以下几个关键功能：
+
+1. **数据库事务管理**：本实验不涉及并发事务。在一个事务中用户会执行一系列的操作（插入、更新、删除数据），这些操作需要作为一个原子操作来处理，即要么全部成功（提交事务），要么全部失败（回滚事务）。
+2. **写前日志（WAL）机制**：写前日志（Write - Ahead Logging，WAL）是一种常用的数据库日志策略，用于确保在数据写入磁盘之前，先将相关的日志记录写入磁盘。本实验日志是内存日志，无需考虑磁盘持久化。
+3. **事务恢复**：在系统崩溃后，需要能够利用日志文件进行数据恢复，以确保数据库的数据一致性。
+4. （附加）**事务保存点**：保存点（Savepoint）是一个在事务执行过程中设置的标记点。在事务的部分失败时，可以回滚到保存点而不是完全回滚整个事务。
 
 ### 实验代码架构
 
 **Database类**
 
-简单的内存数据库，用于存储 `key-value` 数据
+简单的内存数据库，用于存储 `key-value` 数据，涉及数据变更时需要调用其内方法。
 
 **Operation类**
 
-表示事务中的单个操作，本次实验支持`INSERT`、`UPDATE`、`DELETE`操作。
+表示事务中的单个操作，本次实验支持`INSERT`、`UPDATE`、`DELETE`操作。一个事务会涉及一个或多个操作。
 
 **WAL类**
 
-简单的写前日志管理，记录不同类型操作并确保日志的持久性。
+简单的写前日志管理，将不同类型操作记录到日志中。
 
 **Transaction类**
 
-处理事务中各个操作的执行以及事物的执行与回滚。
+处理事务中各个操作的执行以及事物的执行与回滚，并管理事务的保存点。
 
 **LogFile**
 
 RedoLog、UndoLog分别是一条redo/undo日志记录，而RedoLogFile、UndoLogFile作为redo/undo日志的抽象化，充当日志文件角色，持有各自日志记录的集合。
+
+**test**
+
+提供了12个测试用例。
 
 ### 实验任务
 
@@ -302,21 +342,202 @@ RedoLog、UndoLog分别是一条redo/undo日志记录，而RedoLogFile、UndoLog
 2. 实现WAL类中的recover方法。该方法模拟在系统崩溃情况下利用redo日志进行数据恢复的操作。
 3. **附加**：可调整日志文件类中的存储结构以帮助你更方便地实现上述任务。
 
+### 实验评分
+
+满分：100
+
+本次试验共提供12个测试用例，其中前10个涉及任务1、2、3，每个占10分。
+
+最后两个涉及保存点功能，为附加题，可加分。
+
+### 实验提交方式
+
+请打包提交源码和在test下运行**TransactionTest**测试的结果截图。
+
+### 注意事项与提示
+
+1. 本次试验不涉及并发，且仅涉及INSERT、UPDATE、DELETE三种操作。
+2. 执行DELETE操作时需要将对应的键值对删除而不是仅仅将value设为null，对INSERT操作的回滚亦然。
+3. 事务只有在回滚或提交后才会结束活动状态，仅仅保存点回滚不会结束。
+4. 请仔细阅读日志和日志文件类，其中RedoLogFile类中的addInitial方法代表redo日志存在初始记录。
+
 ## 练习7 AI4DB程序开发实验
 
 使用Vanna和Google gemini来去编写一个AI4DB的程序
 
-1. 先通过原始的Vanna和Google gemini在不经过训练的情况下询问题目，得到生成的查询SQL语句，之后记录执行该查询语句的查询用时
-2. 对模型进行不同程度的训练，提供不同层次的训练集，包括：
-   - SQL基本查询（SELECT）
-   - 进阶查询：条件查询（WHERE），排序查询（ORDER BY），分组查询（GROUP BY），筛选分组查询（GROUP BY + HAVING），连接查询（JOIN），子查询（非关联子查询，关联子查询，条件查询，FROM子句中使用子查询），合并结果集（UNION），分页查询（LIMIT）
-   - 函数应用：CASE WHEN查询语句，SQL中基本函数
-   使用vanna.train(ddl, question,sql)的方式进行训练
-3. 根据三种层次进行训练，依次再去问同样的问题，查看生成的查询语句与之前原始语句有什么不同，并记录执行该查询语句的查询用时，进行对比，体会不同训练的层度训练模型前后的性能提升
-4. 完成实验报告
+------
 
-提供一个开源数据集，数据集可以采用开源数据例如movielens中ml-latest-small，Netflix，Retailrocket等，用于后续实验操作
+### **实验目的**
 
-题目均需要用自然语言对话程序，从而获得查询结果，得到操作所需要时间，并进行逐步优化SQL语句，记录操作时间，进而实现从自然语言到SQL语言的转化
+1. **了解大语言模型（LLM）在 SQL 生成中的应用**：通过使用 Vanna 和 Google Gemini，学生将了解如何利用大语言模型生成 SQL 查询语句。
+2. **掌握 AI4DB 的基本概念**：通过实验，学生将理解 AI 在数据库领域的应用
+3. **培养大模型训练与分析能力**：学生将一个未进行任何训练的模型逐步演变到进阶训练的模型，通过对执行语句以及性能分析，再与当今市面上的大模型进行对比，理解大语言模型的训练过程，以及对模型训练重要性的理解
 
-最终提供实验报告（代码、训练过程、最终执行结果、优化后结果）
+------
+
+### **实验要求**
+
+**编程语言**：Python
+
+**工具与库：**
+
+- Vanna：用于 SQL 生成和训练
+- Google Gemini：作为大语言模型生成 SQL
+
+**数据库**：MySQL
+
+**实验环境：**
+
+- 安装MySQL数据库
+- 安装 Python 3.8 及以上版本
+- 安装所需的 Python 库
+
+**实验报告和代码**：
+
+- 实验报告需包括实验过程、实验结果、结果分析和总结
+- 实验报告需附上运行结果截图
+
+------
+
+### **实验过程**
+
+***PS：提问的问题在所需资源中！***
+
+1. **实验准备**
+   - 安装所需的 Python 库 (提供所需要的requirements.txt)
+   - 配置数据库信息，包括创建数据库，导入数据
+2. **实验步骤**
+   - **步骤 1：原始模型测试**
+     1. 连接调用Vanna和Gemini，参照资源中调用Vanna和Genimi的代码
+     2. 使用未经训练的 Vanna 和 Google Gemini 生成 SQL 语句，参照相关响应对话函数
+     3. 记录生成的 SQL 语句及其执行时间
+     4. 将相关执行信息截图放入实验报告中
+   - **步骤 2：基础查询训练模型**
+     - 基本查询，仅对Vanna模型进行简单的SELECT语句训练（SELECT），将实验材料中的basic_train.json文件中的数据导入到模型中进行训练，使用训练后的模型生成SQL语句并记录生成的SQL语句及其执行时间，将执行结果截图放入到实验报告中
+   - **步骤 3：进阶查询训练模型**
+     - 进阶查询，对Vanna模型进行多种查询方式的训练，让模型理解连接查询，子查询等概念（WHERE、ORDER BY、GROUP BY、JOIN 等），将实验材料中的advanced_train.json文件中的数据导入到模型中进行训练，使用训练后的模型生成SQL语句并记录生成的SQL语句及其执行时间，将执行结果截图放入到实验报告中
+   - **步骤 4：函数应用训练模型**
+     - 函数应用，让模型了解数据库函数的用法（CASE WHEN、聚合函数等），将实验材料中的function_train.json文件中的数据导入到模型中进行训练，使用训练后的模型生成SQL语句并记录生成的SQL语句及其执行时间，将执行结果截图放入到实验报告中
+   - **步骤 5：结果分析**
+     - 分析训练数据对模型生成 SQL 语句的影响
+     - 对比不同层次训练数据对模型性能的提升
+     - 对比最终训练的程序与 Gemini 成熟模型的差别
+   - **步骤6：撰写实验报告**
+
+------
+
+### **考核标准**
+
+实验总分为 100 分，分为以下四个层次：
+
+1. **基础完成（30 分）**
+   - 完成实验环境的搭建和配置
+   - 成功调用 Google Gemini 生成 SQL 语句
+   - 成功调用初始 Vanna 模型
+   - 记录并提交未经训练的模型生成的 SQL 语句及其执行时间
+2. **训练模型，每个阶段的训练占比10分（30 分）**
+   - 根据提供的训练数据文件进行训练
+   - 成功训练 Vanna 模型
+   - 记录并提交训练后的模型生成的 SQL 语句及其执行时间
+3. **结果对比与分析（20 分）**
+   - 对比自己的 Vanna 模型与 Google Gemini 模型生成 SQL 语句的准确性和差异
+   - 对比训练前后生成的 SQL 语句的准确性
+   - 对比训练前后 SQL 语句的执行时间
+   - 分析训练数据对模型性能的影响
+4. **实验报告与总结（20 分）**
+   - 提交完整的实验报告和代码，实验报告包括实验过程、实验结果和结果分析
+
+------
+
+### 实验提交方式
+
+打包提交源码和相应实验报告，实验报告模板参考实验材料中的**实验报告模板.docx**
+
+### **所需资源**
+
+**Vanna使用方法**：<https://vanna.ai/docs/>
+
+**获取gemini的api_key方法**：<https://7b5krb21xg.apifox.cn/>
+
+**所需要提问的问题：**
+
+```python
+test_question=["查询每部电影的平均评分，并按评分从高到低排序", "查询每个用户的评分数量，并按评分数量从高到低排序", "查询每部电影的标签数量，并按标签数量从高到低排序", "查询评分最高的 10 部电影，并显示电影标题和平均评分", "查询评分次数最多的 10 部电影，并显示电影标题和评分次数", "查询每部电影的最高评分和最低评分，并显示电影标题", "查询每部电影的相关性最高的标签，并显示电影标题和标签名称", "查询每个用户的平均评分与总体平均评分的差异，并按差异从高到低排序", "查询每部电影的类型分布，并统计每种类型的电影数量", "查询每部电影的标签数量与评分数量的比值，并按比值从高到低排序"]
+```
+
+**调用 Vanna 如下：**
+
+```python
+from vanna.remote import VannaDefault
+
+# MY_VANNA_AIP_KEY和MY_VANNA_MODEL 是指自己的api_key和自定义的vanna_model
+MY_VANNA_API_KEY = ""
+MY_VANNA_MODEL = ""
+vn = VannaDefault(api_key=MY_VANNA_API_KEY, model=MY_VANNA_MODEL)
+# 之后可以使用vn来去调用Vanna的服务
+vn.train() # 训练函数
+vn.generate_sql(question) # 使用 Vanna 生成SQL语句，其中question是要提问的问题
+```
+
+**调用Gemini 如下：**
+
+```python
+import google.generativeai as genai
+
+# GEMINI_API_KEY和GEMINI_MODEL 是指自己申请的Google Gemini的api_key 和 model
+GEMINI_API_KEY = ''
+GEMINI_MODEL = ''
+genai.configure(api_key=GEMINI_API_KEY)
+gemini_model = genai.GenerativeModel(GEMINI_MODEL)
+# 之后可以调用genimi的相关函数
+prompt = f"Generate an SQL query for the following question: {question}" # 自定义prompt
+response = gemini_model.generate_content(prompt) # 向genimi发送问题，返回问题回答
+sql_gemini = response.text.strip() # 将genimi响应的SQL转换成字符串
+```
+
+**读取json文件**：
+
+```python
+import json
+with open(file_path, 'r', encoding='utf-8') as file:
+ data = json.load(file)
+```
+
+**使用 Vanna 进行训练：**
+
+```python
+# 常用API 
+vn.train(ddl="CREATE TABLE my_table (id INT, name TEXT)") # 使系统了解可用的表、列和数据类型
+vn.train(documentation="我们的业务将XYZ定义为ABC") # 让 LLM 了解用户问题的上下文
+vn.train(
+    question="我们顾客的平均年龄是多少?", 
+    sql="SELECT AVG(age) FROM customers"
+)
+vn.train(ddl="CREATE TABLE my_table (id INT, name VARCHAR(20), age INT)", question="我们顾客的平均年龄是多少?", sql="SELECT AVG(age) FROM customers") 
+# 推荐使用第三种和第四种
+```
+
+其中”ddl” 描述表结构，”question”描述提问问题，”sql” 描述针对该问题对应的SQL语句
+
+**连接数据库，运行SQL语句并记录执行效率的流程：**
+
+```python
+# 连接数据库
+import time
+import pymysql
+connection = pymysql.connect(**db_config) # db_config 存放数据库相关信息，包括host,user,password,database 例如:db_config = {"host": "localhost", "user": "user", "password": "1234", "database": "mydb"}
+cursor = connection.cursor()
+
+# 记录开始时间 利用time函数
+
+# 执行SQL
+cursor.execute(sql)
+# 获取查询结果
+result = cursor.fetchall()
+
+# 记录结束时间
+
+# 计算查询时间
+
+# 关闭连接 使用connect和cursor的close函数
+```
