@@ -2,6 +2,8 @@
 
 使用Vanna和Google gemini来去编写一个AI4DB的程序
 
+代码量预计100-150行，预估2个小时做完
+
 ------
 
 ### **实验目的**
@@ -19,7 +21,7 @@
 **工具与库：**
 
 - Vanna：用于 SQL 生成和训练
-- Google Gemini：作为大语言模型生成 SQL
+- Google Gemini：作为生成 SQL的大语言模型与 Vanna 进行对照
 
 **数据库**：MySQL
 
@@ -27,7 +29,7 @@
 
 - 安装MySQL数据库
 - 安装 Python 3.8 及以上版本
-- 安装所需的 Python 库
+- 安装所需的 Python 库（参考实验材料中的requirements.txt）
 
 **实验报告和代码**：
 
@@ -41,8 +43,8 @@
 ***PS：提问的问题在所需资源中！***
 
 1. **实验准备**
-   - 安装所需的 Python 库 (提供所需要的requirements.txt)
-   - 配置数据库信息，包括创建数据库，导入数据
+   - 安装所需的 Python 库 (参考实验材料中的requirements.txt)
+   - 配置数据库信息，包括创建数据库，导入全部数据。数据地址：https://files.grouplens.org/datasets/movielens/ml-latest.zip
 2. **实验步骤**
    - **步骤 1：原始模型测试**
      1. 连接调用Vanna和Gemini，参照资源中调用Vanna和Genimi的代码
@@ -100,6 +102,15 @@
 
 
 
+**安装所需要的依赖：**
+
+```powershell
+// 使用pip下载
+pip install -r requirements.txt
+```
+
+
+
 **所需要提问的问题：**
 
 ```python
@@ -120,6 +131,7 @@ vn = VannaDefault(api_key=MY_VANNA_API_KEY, model=MY_VANNA_MODEL)
 # 之后可以使用vn来去调用Vanna的服务
 vn.train() # 训练函数
 vn.generate_sql(question) # 使用 Vanna 生成SQL语句，其中question是要提问的问题
+get_training_data() # 获取训练数据
 ```
 
  
