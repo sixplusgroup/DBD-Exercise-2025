@@ -39,19 +39,6 @@ public class WAL {
      * 你需要利用Redo日志文件中的记录恢复Database中的数据
      */
     public void recover() {
-        List<RedoLog> logs = redoLogFile.getLogs();
-        for (RedoLog log : logs) {
-            switch (log.getOperationType()) {
-                case "INSERT":
-                    Database.putData(log.getKey(), log.getValue());
-                    break;
-                case "UPDATE":
-                    Database.putData(log.getKey(), log.getValue());
-                    break;
-                case "DELETE":
-                    Database.deleteData(log.getKey());
-                    break;
-            }
-        }
+        //TODO
     }
 }

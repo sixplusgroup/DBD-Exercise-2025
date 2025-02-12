@@ -18,7 +18,7 @@ public class Transaction {
 
     //TODO
     //你需要自行设计数据结构以存储Savapoint
-    private List<Integer> savepoints;
+
 
     public Transaction(String transactionId, WAL wal) {
         this.transactionId = transactionId;
@@ -40,34 +40,7 @@ public class Transaction {
         if (!isActive) {
             throw new Exception("事务已结束，无法执行操作");
         }
-        switch (operation.getType()) {
-            case "INSERT":
-                // 插入数据到数据库
-                Database.putData(operation.getKey(), operation.getValue());
-                // 记录 LogFile.UndoLog: 记录删除操作（因为需要在回滚时删除刚插入的数据）
-                wal.logUndo(transactionId, "DELETE", operation.getKey(), null);  // 插入操作的回滚是删除
-                // 记录 LogFile.RedoLog: 记录插入操作
-                wal.logRedo(transactionId, "INSERT", operation.getKey(), operation.getValue());
-                break;
-            case "UPDATE":
-                // 获取旧值并更新数据库
-                String oldValue = Database.getData(operation.getKey());
-                Database.putData(operation.getKey(), operation.getValue());
-                // 记录 LogFile.UndoLog: 保存旧值，以便回滚
-                wal.logUndo(transactionId, "UPDATE", operation.getKey(), oldValue);
-                // 记录 LogFile.RedoLog: 记录更新操作
-                wal.logRedo(transactionId, "UPDATE", operation.getKey(), operation.getValue());
-                break;
-            case "DELETE":
-                // 获取旧值并删除数据
-                String valueToDelete = Database.getData(operation.getKey());
-                Database.deleteData(operation.getKey());  // 删除数据
-                // 记录 LogFile.UndoLog: 保存旧值，以便回滚
-                wal.logUndo(transactionId, "INSERT", operation.getKey(), valueToDelete);
-                // 记录 LogFile.RedoLog: 记录删除操作
-                wal.logRedo(transactionId, "DELETE", operation.getKey(), null);
-                break;
-        }
+        //TODO
     }
 
 
@@ -83,26 +56,7 @@ public class Transaction {
             throw new Exception("事务已提交或回滚");
         }
 
-        // 回滚所有操作
-        List<UndoLog> logs = wal.getUndoLogs();
-        int size = logs.size();
-        for (int i = size - 1; i >= 0; i--) {
-            UndoLog log = logs.get(i);
-            if (!log.getTransactionId().equals(this.transactionId)) {
-                break;
-            }
-            switch (log.getOperationType()) {
-                case "INSERT":
-                    Database.putData(log.getKey(), log.getOldValue());
-                    break;
-                case "UPDATE":
-                    Database.putData(log.getKey(), log.getOldValue());
-                    break;
-                case "DELETE":
-                    Database.deleteData(log.getKey());
-                    break;
-            }
-        }
+        //TODO
 
         isActive = false;
     }
@@ -118,7 +72,7 @@ public class Transaction {
         if (!isActive) {
             throw new Exception("事务已提交或回滚，无法提交保存点");
         }
-        savepoints.add(wal.getUndoLogs().size());
+        //TODO
     }
 
     /**
@@ -132,27 +86,7 @@ public class Transaction {
         if (!isActive) {
             throw new Exception("事务已提交或回滚");
         }
-
-        int savepointIndex = savepoints.remove(savepoints.size() - 1);
-        List<UndoLog> logs = wal.getUndoLogs();
-        int size = logs.size();
-        for (int i = size - 1; i >= savepointIndex; i--) {
-            UndoLog log = logs.get(i);
-            if (!log.getTransactionId().equals(this.transactionId)) {
-                continue;
-            }
-            switch (log.getOperationType()) {
-                case "INSERT":
-                    Database.putData(log.getKey(), log.getOldValue());
-                    break;
-                case "UPDATE":
-                    Database.putData(log.getKey(), log.getOldValue());
-                    break;
-                case "DELETE":
-                    Database.deleteData(log.getKey());
-                    break;
-            }
-        }
+        //TODO
     }
 
     /**
@@ -164,9 +98,6 @@ public class Transaction {
         if (!isActive) {
             throw new Exception("事务已提交或回滚");
         }
-
-        // 模拟提交操作
-        System.out.println("事务提交: " + transactionId);
         isActive = false;
     }
 }
