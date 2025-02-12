@@ -1,0 +1,746 @@
+[
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Adventure'",
+    "question": "查询电影类型为冒险的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, genres FROM movies WHERE title LIKE '%Star%'",
+    "question": "查询标题中包含 'Star' 的电影的编号和类型"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies ORDER BY title ASC",
+    "question": "按标题升序排列查询所有电影的编号和标题"
+  },
+  {
+    "sql": "SELECT genres, COUNT(*) FROM movies GROUP BY genres",
+    "question": "统计每种电影类型的电影数量"
+  },
+  {
+    "sql": "SELECT genres, COUNT(*) FROM movies GROUP BY genres HAVING COUNT(*) > 5",
+    "question": "查询电影数量超过 5 部的电影类型及其数量"
+  },
+  {
+    "sql": "SELECT m1.movieId, m1.title FROM movies m1 JOIN movies m2 ON m1.genres = m2.genres WHERE m2.movieId = 10",
+    "question": "查询与电影编号为 10 具有相同类型的其他电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId IN (SELECT movieId FROM ratings WHERE rating > 4)",
+    "question": "查询评分大于 4 的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, title FROM movies) AS sub WHERE title LIKE '%War%'",
+    "question": "使用子查询查询标题中包含 'War' 的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId IN (SELECT movieId FROM genome - scores WHERE relevance > 0.9) ORDER BY title DESC",
+    "question": "查询相关性大于 0.9 的电影的编号和标题，并按标题降序排列"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies UNION SELECT movieId, title FROM (SELECT movieId, title FROM movies WHERE genres = 'Comedy') AS sub",
+    "question": "查询所有电影的编号和标题以及喜剧类型电影的编号和标题的并集"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies LIMIT 10",
+    "question": "查询前 10 条电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies LIMIT 5 OFFSET 15",
+    "question": "查询第 16 到第 20 条电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Fantasy' AND title NOT LIKE '%Quest%'",
+    "question": "查询电影类型为幻想且标题不包含 'Quest' 的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, genres FROM movies ORDER BY movieId DESC LIMIT 8",
+    "question": "按电影编号降序排列查询前 8 条电影的编号和类型"
+  },
+  {
+    "sql": "SELECT genres, AVG(LENGTH(title)) FROM movies GROUP BY genres",
+    "question": "统计每种电影类型的电影标题的平均长度"
+  },
+  {
+    "sql": "SELECT genres, MIN(LENGTH(title)) FROM movies GROUP BY genres HAVING MIN(LENGTH(title)) < 10",
+    "question": "查询电影标题最短长度小于 10 的电影类型及其最短标题长度"
+  },
+  {
+    "sql": "SELECT m1.movieId, m1.title FROM movies m1 JOIN (SELECT movieId FROM movies WHERE genres = 'Sci - Fi') AS sub ON m1.movieId = sub.movieId WHERE m1.title LIKE '%Future%'",
+    "question": "查询科幻类型且标题包含 'Future' 的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId NOT IN (SELECT movieId FROM links WHERE imdbId IS NULL)",
+    "question": "查询在链接表中有有效 IMDb ID 的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, genres FROM movies) AS sub WHERE genres IN ('Action', 'Thriller')",
+    "question": "使用子查询查询电影类型为动作或惊悚的电影的编号和类型"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId IN (SELECT movieId FROM tags WHERE tag = 'epic') ORDER BY title ASC",
+    "question": "查询被标记为 'epic' 的电影的编号和标题，并按标题升序排列"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Romance' UNION ALL SELECT movieId, title FROM movies WHERE genres = 'Drama'",
+    "question": "查询浪漫类型和戏剧类型电影的编号和标题的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies LIMIT 20 OFFSET 30",
+    "question": "查询第 31 到第 50 条电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE title REGEXP '^The'",
+    "question": "查询标题以 'The' 开头的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT genres, COUNT(*) FROM movies WHERE LENGTH(title) > 20 GROUP BY genres",
+    "question": "统计标题长度大于 20 的每种电影类型的电影数量"
+  },
+  {
+    "sql": "SELECT genres, SUM(LENGTH(title)) FROM movies GROUP BY genres HAVING SUM(LENGTH(title)) > 100",
+    "question": "查询电影标题总长度超过 100 的电影类型及其标题总长度"
+  },
+  {
+    "sql": "SELECT m1.movieId, m1.title FROM movies m1 JOIN movies m2 ON m1.genres = m2.genres WHERE m2.title LIKE '%Legend%' AND m1.movieId != m2.movieId",
+    "question": "查询与标题包含 'Legend' 的电影具有相同类型的其他电影的编号和标题"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId IN (SELECT movieId FROM ratings WHERE rating BETWEEN 3 AND 4)",
+    "question": "查询评分在 3 到 4 之间的电影的编号和标题"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, genres FROM movies) AS sub WHERE genres NOT IN ('Musical', 'Documentary')",
+    "question": "使用子查询查询电影类型不是音乐和纪录片的电影的编号和类型"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE movieId IN (SELECT movieId FROM genome - scores WHERE tagId = 5) ORDER BY movieId ASC",
+    "question": "查询标签编号为 5 的电影的编号和标题，并按电影编号升序排列"
+  },
+  {
+    "sql": "SELECT movieId, title FROM movies WHERE genres = 'Horror' UNION SELECT movieId, title FROM movies WHERE genres = 'Mystery'",
+    "question": "查询恐怖类型和悬疑类型电影的编号和标题的并集"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE relevance > 0.7",
+    "question": "查询相关性大于 0.7 的电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, relevance FROM genome - scores WHERE tagId = 20",
+    "question": "查询标签编号为 20 的电影编号和相关性"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores ORDER BY relevance DESC",
+    "question": "按相关性降序排列查询所有电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT tagId, AVG(relevance) FROM genome - scores GROUP BY tagId",
+    "question": "统计每个标签的平均相关性"
+  },
+  {
+    "sql": "SELECT tagId, AVG(relevance) FROM genome - scores GROUP BY tagId HAVING AVG(relevance) > 0.6",
+    "question": "查询平均相关性大于 0.6 的标签编号及其平均相关性"
+  },
+  {
+    "sql": "SELECT gs1.movieId, gs1.tagId FROM genome - scores gs1 JOIN genome - scores gs2 ON gs1.tagId = gs2.tagId WHERE gs2.movieId = 15",
+    "question": "查询与电影编号为 15 具有相同标签的其他电影的编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Animation')",
+    "question": "查询动画类型电影的电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, relevance FROM genome - scores) AS sub WHERE relevance < 0.3",
+    "question": "使用子查询查询相关性小于 0.3 的电影编号和相关性"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM ratings WHERE rating < 2) ORDER BY tagId ASC",
+    "question": "查询评分小于 2 的电影的编号和标签编号，并按标签编号升序排列"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores UNION SELECT movieId, tagId FROM (SELECT movieId, tagId FROM genome - scores WHERE relevance BETWEEN 0.4 AND 0.6)",
+    "question": "查询所有电影编号和标签编号以及相关性在 0.4 到 0.6 之间的电影编号和标签编号的并集"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores LIMIT 12",
+    "question": "查询前 12 条电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores LIMIT 6 OFFSET 20",
+    "question": "查询第 21 到第 26 条电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, relevance FROM genome - scores WHERE tagId IN (SELECT tagId FROM genome - tags WHERE tag LIKE '%fun%')",
+    "question": "查询标签包含 'fun' 的电影编号和相关性"
+  },
+  {
+    "sql": "SELECT tagId, COUNT(*) FROM genome - scores GROUP BY tagId ORDER BY COUNT(*) DESC LIMIT 5",
+    "question": "按标签出现次数降序排列查询前 5 个标签的编号及其出现次数"
+  },
+  {
+    "sql": "SELECT tagId, MAX(relevance) FROM genome - scores GROUP BY tagId",
+    "question": "统计每个标签的最大相关性"
+  },
+  {
+    "sql": "SELECT tagId, MIN(relevance) FROM genome - scores GROUP BY tagId HAVING MIN(relevance) > 0.1",
+    "question": "查询最小相关性大于 0.1 的标签编号及其最小相关性"
+  },
+  {
+    "sql": "SELECT gs1.movieId, gs1.tagId FROM genome - scores gs1 JOIN (SELECT movieId FROM movies WHERE genres = 'Western') AS sub ON gs1.movieId = sub.movieId WHERE gs1.relevance > 0.8",
+    "question": "查询西部类型且相关性大于 0.8 的电影的编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId NOT IN (SELECT movieId FROM links WHERE tmdbId IS NULL)",
+    "question": "查询在链接表中有有效 TMDb ID 的电影的编号和标签编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, tagId FROM genome - scores) AS sub WHERE tagId IN (10, 20, 30)",
+    "question": "使用子查询查询标签编号为 10、20 或 30 的电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM tags WHERE tag = 'exciting') ORDER BY relevance DESC",
+    "question": "查询被标记为 'exciting' 的电影的编号和标签编号，并按相关性降序排列"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE relevance > 0.5 UNION ALL SELECT movieId, tagId FROM genome - scores WHERE tagId = 15",
+    "question": "查询相关性大于 0.5 的电影编号和标签编号以及标签编号为 15 的电影编号和标签编号的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores LIMIT 18 OFFSET 25",
+    "question": "查询第 26 到第 43 条电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE relevance REGEXP '^0.9'",
+    "question": "查询相关性以 0.9 开头的电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT tagId, COUNT(*) FROM genome - scores WHERE relevance < 0.5 GROUP BY tagId",
+    "question": "统计相关性小于 0.5 的每个标签的出现次数"
+  },
+  {
+    "sql": "SELECT tagId, SUM(relevance) FROM genome - scores GROUP BY tagId HAVING SUM(relevance) > 5",
+    "question": "查询相关性总和超过 5 的标签编号及其相关性总和"
+  },
+  {
+    "sql": "SELECT gs1.movieId, gs1.tagId FROM genome - scores gs1 JOIN genome - scores gs2 ON gs1.relevance = gs2.relevance WHERE gs2.movieId = 25 AND gs1.movieId != gs2.movieId",
+    "question": "查询与电影编号为 25 具有相同相关性的其他电影的编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM ratings WHERE rating > 4.5)",
+    "question": "查询评分大于 4.5 的电影的编号和标签编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, tagId FROM genome - scores) AS sub WHERE tagId NOT IN (1, 2, 3)",
+    "question": "使用子查询查询标签编号不是 1、2 或 3 的电影编号和标签编号"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM genome - scores WHERE tagId = 8) ORDER BY movieId DESC",
+    "question": "查询标签编号为 8 的电影的编号和标签编号，并按电影编号降序排列"
+  },
+  {
+    "sql": "SELECT movieId, tagId FROM genome - scores WHERE relevance < 0.2 UNION SELECT movieId, tagId FROM genome - scores WHERE tagId = 25",
+    "question": "查询相关性小于 0.2 的电影编号和标签编号以及标签编号为 25 的电影编号和标签编号的并集"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tag LIKE '%hero%'",
+    "question": "查询标签包含 'hero' 的标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, LENGTH(tag) FROM genome - tags WHERE LENGTH(tag) > 10",
+    "question": "查询标签长度大于 10 的标签编号和标签长度"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags ORDER BY tag ASC",
+    "question": "按标签升序排列查询所有标签编号和标签"
+  },
+  {
+    "sql": "SELECT SUBSTRING(tag, 1, 3), COUNT(*) FROM genome - tags GROUP BY SUBSTRING(tag, 1, 3)",
+    "question": "统计标签前三个字符的出现次数"
+  },
+  {
+    "sql": "SELECT SUBSTRING(tag, 1, 3), COUNT(*) FROM genome - tags GROUP BY SUBSTRING(tag, 1, 3) HAVING COUNT(*) > 3",
+    "question": "查询出现次数超过 3 次的标签前三个字符及其出现次数"
+  },
+  {
+    "sql": "SELECT gt1.tagId, gt1.tag FROM genome - tags gt1 JOIN genome - tags gt2 ON gt1.tag LIKE CONCAT('%', gt2.tag, '%') WHERE gt2.tagId = 30",
+    "question": "查询包含标签编号为 30 对应标签内容的其他标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId IN (SELECT tagId FROM genome - scores WHERE movieId = 40)",
+    "question": "查询与电影编号为 40 相关的标签编号和标签"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT tagId, tag FROM genome - tags) AS sub WHERE tag REGEXP '[0 - 9]'",
+    "question": "使用子查询查询标签中包含数字的标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId IN (SELECT tagId FROM genome - scores WHERE relevance > 0.85) ORDER BY tag ASC",
+    "question": "查询相关性大于 0.85 的标签编号和标签，并按标签升序排列"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags UNION SELECT tagId, tag FROM (SELECT tagId, tag FROM genome - tags WHERE LENGTH(tag) < 6)",
+    "question": "查询所有标签编号和标签以及标签长度小于 6 的标签编号和标签的并集"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags LIMIT 15",
+    "question": "查询前 15 条标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags LIMIT 8 OFFSET 18",
+    "question": "查询第 19 到第 26 条标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tag NOT LIKE '%story%'",
+    "question": "查询标签不包含 'story' 的标签编号和标签"
+  },
+  {
+    "sql": "SELECT LEFT(tag, 1), COUNT(*) FROM genome - tags GROUP BY LEFT(tag, 1) ORDER BY COUNT(*) ASC LIMIT 4",
+    "question": "按标签首字母分组，查询出现次数最少的前 4 个首字母及其对应标签数量"
+  },
+  {
+    "sql": "SELECT CHAR_LENGTH(tag), COUNT(*) FROM genome - tags GROUP BY CHAR_LENGTH(tag)",
+    "question": "统计不同标签长度的标签数量"
+  },
+  {
+    "sql": "SELECT CHAR_LENGTH(tag), COUNT(*) FROM genome - tags GROUP BY CHAR_LENGTH(tag) HAVING COUNT(*) > 5",
+    "question": "查询标签数量超过 5 个的标签长度及其对应标签数量"
+  },
+  {
+    "sql": "SELECT gt1.tagId, gt1.tag FROM genome - tags gt1 JOIN (SELECT tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Crime')) AS sub ON gt1.tagId = sub.tagId WHERE gt1.tag LIKE '%crime%'",
+    "question": "查询犯罪类型电影相关且标签包含 'crime' 的标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId NOT IN (SELECT DISTINCT tagId FROM genome - scores WHERE relevance < 0.2)",
+    "question": "查询相关性不小于 0.2 的标签编号和标签"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT tagId, tag FROM genome - tags) AS sub WHERE tag LIKE '%adventure%' OR tag LIKE '%mystery%'",
+    "question": "使用子查询查询标签包含 'adventure' 或 'mystery' 的标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId IN (SELECT tagId FROM tags WHERE movieId = 50) ORDER BY tagId DESC",
+    "question": "查询电影编号为 50 相关的标签编号和标签，并按标签编号降序排列"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tag LIKE '%comedy%' UNION ALL SELECT tagId, tag FROM genome - tags WHERE tag LIKE '%romance%'",
+    "question": "查询标签包含 'comedy' 和包含 'romance' 的标签编号和标签的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags LIMIT 22 OFFSET 12",
+    "question": "查询第 13 到第 34 条标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tag REGEXP '^[A - Z]'",
+    "question": "查询以大写字母开头的标签编号和标签"
+  },
+  {
+    "sql": "SELECT COUNT(*) FROM genome - tags WHERE tag LIKE '%action%'",
+    "question": "统计标签包含 'action' 的标签数量"
+  },
+  {
+    "sql": "SELECT AVG(LENGTH(tag)) FROM genome - tags GROUP BY LEFT(tag, 1) HAVING AVG(LENGTH(tag)) > 8",
+    "question": "查询标签首字母分组后，平均标签长度大于 8 的首字母及其平均标签长度"
+  },
+  {
+    "sql": "SELECT gt1.tagId, gt1.tag FROM genome - tags gt1 JOIN genome - tags gt2 ON gt1.tag = REVERSE(gt2.tag) WHERE gt2.tagId = 45",
+    "question": "查询与标签编号为 45 对应标签反转后相同的其他标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId IN (SELECT tagId FROM genome - scores WHERE movieId IN (SELECT movieId FROM ratings WHERE rating < 3))",
+    "question": "查询评分小于 3 的电影相关的标签编号和标签"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT tagId, tag FROM genome - tags) AS sub WHERE tag NOT REGEXP '[aeiou]'",
+    "question": "使用子查询查询标签中不包含元音字母的标签编号和标签"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tagId IN (SELECT tagId FROM genome - scores WHERE relevance BETWEEN 0.3 AND 0.7) ORDER BY tagId ASC",
+    "question": "查询相关性在 0.3 到 0.7 之间的标签编号和标签，并按标签编号升序排列"
+  },
+  {
+    "sql": "SELECT tagId, tag FROM genome - tags WHERE tag LIKE '%drama%' UNION SELECT tagId, tag FROM genome - tags WHERE tag LIKE '%thriller%'",
+    "question": "查询标签包含 'drama' 和包含 'thriller' 的标签编号和标签的并集"
+  },
+   {
+    "sql": "SELECT movieId, imdbId FROM links WHERE tmdbId IS NOT NULL",
+    "question": "查询 TMDb ID 不为空的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE imdbId LIKE 'tt1%'",
+    "question": "查询 IMDb ID 以 'tt1' 开头的电影编号和 TMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links ORDER BY imdbId DESC",
+    "question": "按 IMDb ID 降序排列查询所有电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT LEFT(imdbId, 4), COUNT(*) FROM links GROUP BY LEFT(imdbId, 4)",
+    "question": "统计 IMDb ID 前四位的出现次数"
+  },
+  {
+    "sql": "SELECT LEFT(imdbId, 4), COUNT(*) FROM links GROUP BY LEFT(imdbId, 4) HAVING COUNT(*) > 2",
+    "question": "查询出现次数超过 2 次的 IMDb ID 前四位及其出现次数"
+  },
+  {
+    "sql": "SELECT l1.movieId, l1.imdbId FROM links l1 JOIN links l2 ON l1.tmdbId = l2.tmdbId WHERE l2.movieId = 60",
+    "question": "查询与电影编号为 60 具有相同 TMDb ID 的其他电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId IN (SELECT movieId FROM movies WHERE title LIKE '%Avengers%')",
+    "question": "查询标题包含 'Avengers' 的电影的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, tmdbId FROM links) AS sub WHERE tmdbId > 1000",
+    "question": "使用子查询查询 TMDb ID 大于 1000 的电影编号和 TMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId IN (SELECT movieId FROM ratings WHERE rating = 1) ORDER BY movieId ASC",
+    "question": "查询评分为 1 的电影的电影编号和 IMDb ID，并按电影编号升序排列"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links UNION SELECT movieId, imdbId FROM (SELECT movieId, imdbId FROM links WHERE tmdbId < 500)",
+    "question": "查询所有电影编号和 IMDb ID 以及 TMDb ID 小于 500 的电影编号和 IMDb ID 的并集"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links LIMIT 14",
+    "question": "查询前 14 条电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links LIMIT 7 OFFSET 21",
+    "question": "查询第 22 到第 28 条电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, tmdbId FROM links WHERE imdbId NOT LIKE 'tt%'",
+    "question": "查询 IMDb ID 不以 'tt' 开头的电影编号和 TMDb ID"
+  },
+  {
+    "sql": "SELECT RIGHT(tmdbId, 2), COUNT(*) FROM links GROUP BY RIGHT(tmdbId, 2) ORDER BY COUNT(*) DESC LIMIT 3",
+    "question": "按 TMDb ID 后两位分组，查询出现次数最多的前 3 个后两位及其对应电影数量"
+  },
+  {
+    "sql": "SELECT LENGTH(imdbId), COUNT(*) FROM links GROUP BY LENGTH(imdbId)",
+    "question": "统计不同 IMDb ID 长度的电影数量"
+  },
+  {
+    "sql": "SELECT LENGTH(imdbId), COUNT(*) FROM links GROUP BY LENGTH(imdbId) HAVING COUNT(*) > 4",
+    "question": "查询电影数量超过 4 个的 IMDb ID 长度及其对应电影数量"
+  },
+  {
+    "sql": "SELECT l1.movieId, l1.imdbId FROM links l1 JOIN (SELECT movieId FROM movies WHERE genres = 'Family') AS sub ON l1.movieId = sub.movieId WHERE l1.tmdbId > 2000",
+    "question": "查询家庭类型电影且 TMDb ID 大于 2000 的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId NOT IN (SELECT movieId FROM ratings WHERE rating IS NULL)",
+    "question": "查询有评分的电影的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, tmdbId FROM links) AS sub WHERE tmdbId BETWEEN 500 AND 1500",
+    "question": "使用子查询查询 TMDb ID 在 500 到 1500 之间的电影编号和 TMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId IN (SELECT movieId FROM tags WHERE tag = 'kid - friendly') ORDER BY imdbId ASC",
+    "question": "查询被标记为 'kid - friendly' 的电影的电影编号和 IMDb ID，并按 IMDb ID 升序排列"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE imdbId LIKE 'tt2%' UNION ALL SELECT movieId, imdbId FROM links WHERE tmdbId < 300",
+    "question": "查询 IMDb ID 以 'tt2' 开头和 TMDb ID 小于 300 的电影编号和 IMDb ID 的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links LIMIT 20 OFFSET 16",
+    "question": "查询第 17 到第 36 条电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE imdbId REGEXP '[0 - 9]{7}'",
+    "question": "查询 IMDb ID 为 7 位数字的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT COUNT(*) FROM links WHERE tmdbId > 1800",
+    "question": "统计 TMDb ID 大于 1800 的电影数量"
+  },
+  {
+    "sql": "SELECT AVG(tmdbId) FROM links GROUP BY LEFT(imdbId, 3) HAVING AVG(tmdbId) > 1200",
+    "question": "查询 IMDb ID 前三位分组后，平均 TMDb ID 大于 1200 的前三位及其平均 TMDb ID"
+  },
+  {
+    "sql": "SELECT l1.movieId, l1.imdbId FROM links l1 JOIN links l2 ON l1.imdbId = l2.imdbId WHERE l2.movieId = 70 AND l1.movieId != l2.movieId",
+    "question": "查询与电影编号为 70 具有相同 IMDb ID 的其他电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId IN (SELECT movieId FROM ratings WHERE rating > 4) AND tmdbId < 2500",
+    "question": "查询评分大于 4 且 TMDb ID 小于 2500 的电影编号和 IMDb ID"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT movieId, tmdbId FROM links) AS sub WHERE tmdbId NOT BETWEEN 800 AND 1200",
+    "question": "使用子查询查询 TMDb ID 不在 800 到 1200 之间的电影编号和 TMDb ID"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE movieId IN (SELECT movieId FROM genome - scores WHERE relevance > 0.9) ORDER BY tmdbId DESC",
+    "question": "查询相关性大于 0.9 的电影的电影编号和 IMDb ID，并按 TMDb ID 降序排列"
+  },
+  {
+    "sql": "SELECT movieId, imdbId FROM links WHERE tmdbId < 600 UNION SELECT movieId, imdbId FROM links WHERE imdbId LIKE 'tt3%'",
+    "question": "查询 TMDb ID 小于 600 和 IMDb ID 以 'tt3' 开头的电影编号和 IMDb ID 的并集"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE rating > 3.5",
+    "question": "查询评分大于 3.5 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, rating FROM ratings WHERE movieId = 80",
+    "question": "查询电影编号为 80 的用户编号和评分"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings ORDER BY rating ASC",
+    "question": "按评分升序排列查询所有用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, AVG(rating) FROM ratings GROUP BY userId",
+    "question": "统计每个用户的平均评分"
+  },
+  {
+    "sql": "SELECT userId, AVG(rating) FROM ratings GROUP BY userId HAVING AVG(rating) > 4",
+    "question": "查询平均评分大于 4 的用户编号及其平均评分"
+  },
+  {
+    "sql": "SELECT r1.userId, r1.movieId FROM ratings r1 JOIN ratings r2 ON r1.rating = r2.rating WHERE r2.movieId = 90",
+    "question": "查询与电影编号为 90 评分相同的其他用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Fantasy')",
+    "question": "查询奇幻类型电影的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, rating FROM ratings) AS sub WHERE rating < 2",
+    "question": "使用子查询查询评分小于 2 的用户编号和评分"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM genome - scores WHERE tagId = 12) ORDER BY rating DESC",
+    "question": "查询标签编号为 12 的电影的用户编号和电影编号，并按评分降序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings UNION SELECT userId, movieId FROM (SELECT userId, movieId FROM ratings WHERE rating BETWEEN 2.5 AND 3.5)",
+    "question": "查询所有用户编号和电影编号以及评分在 2.5 到 3.5 之间的用户编号和电影编号的并集"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings LIMIT 16",
+    "question": "查询前 16 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings LIMIT 9 OFFSET 23",
+    "question": "查询第 24 到第 32 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, rating FROM ratings WHERE movieId NOT IN (SELECT movieId FROM links WHERE imdbId IS NULL)",
+    "question": "查询在链接表中有有效 IMDb ID 的电影的用户编号和评分"
+  },
+  {
+    "sql": "SELECT userId, COUNT(*) FROM ratings GROUP BY userId ORDER BY COUNT(*) ASC LIMIT 5",
+    "question": "按用户编号分组，查询评分记录最少的前 5 个用户编号及其评分记录数量"
+  },
+  {
+    "sql": "SELECT movieId, MAX(rating) FROM ratings GROUP BY movieId",
+    "question": "统计每部电影的最高评分"
+  },
+  {
+    "sql": "SELECT movieId, MIN(rating) FROM ratings GROUP BY movieId HAVING MIN(rating) < 1.5",
+    "question": "查询最低评分小于 1.5 的电影编号及其最低评分"
+  },
+  {
+    "sql": "SELECT r1.userId, r1.movieId FROM ratings r1 JOIN (SELECT movieId FROM movies WHERE genres = 'Historical') AS sub ON r1.movieId = sub.movieId WHERE r1.rating > 3",
+    "question": "查询历史类型电影且评分大于 3 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE userId NOT IN (SELECT userId FROM tags WHERE tag = 'boring')",
+    "question": "查询未将电影标记为 'boring' 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, movieId FROM ratings) AS sub WHERE userId IN (10, 20, 30)",
+    "question": "使用子查询查询用户编号为 10、20 或 30 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM tags WHERE tag = 'emotional') ORDER BY rating ASC",
+    "question": "查询被标记为 'emotional' 的电影的用户编号和电影编号，并按评分升序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE rating > 3.8 UNION ALL SELECT userId, movieId FROM ratings WHERE movieId = 100",
+    "question": "查询评分大于 3.8 的用户编号和电影编号以及电影编号为 100 的用户编号和电影编号的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings LIMIT 25 OFFSET 15",
+    "question": "查询第 16 到第 40 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE rating REGEXP '^[1 - 2]'",
+    "question": "查询评分以 1 或 2 开头的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, COUNT(*) FROM ratings WHERE rating > 4.2 GROUP BY userId",
+    "question": "统计评分大于 4.2 的每个用户的评分记录数量"
+  },
+  {
+    "sql": "SELECT userId, SUM(rating) FROM ratings GROUP BY userId HAVING SUM(rating) > 20",
+    "question": "查询评分总和超过 20 的用户编号及其评分总和"
+  },
+  {
+    "sql": "SELECT r1.userId, r1.movieId FROM ratings r1 JOIN ratings r2 ON r1.rating = r2.rating WHERE r2.userId = 50 AND r1.userId != r2.userId",
+    "question": "查询与用户编号为 50 评分相同的其他用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM movies WHERE title LIKE '%Journey%') AND rating > 3.2",
+    "question": "查询标题包含 'Journey' 且评分大于 3.2 的电影的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, movieId FROM ratings) AS sub WHERE userId NOT IN (40, 50, 60)",
+    "question": "使用子查询查询用户编号不是 40、50 或 60 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM genome - scores WHERE relevance > 0.95) ORDER BY userId ASC",
+    "question": "查询相关性大于 0.95 的电影的用户编号和电影编号，并按用户编号升序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE rating < 2.2 UNION SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM links WHERE tmdbId > 3000)",
+    "question": "查询评分小于 2.2 的用户编号和电影编号以及 TMDb ID 大于 3000 的电影的用户编号和电影编号的并集"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Biography') AND rating BETWEEN 2 AND 3",
+    "question": "查询传记类型电影且评分在 2 到 3 之间的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE userId IN (SELECT userId FROM tags WHERE tag = 'hilarious') ORDER BY rating DESC",
+    "question": "查询将电影标记为 'hilarious' 的用户编号和电影编号，并按评分降序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM ratings WHERE rating > 4 UNION ALL SELECT userId, movieId FROM ratings WHERE movieId IN (SELECT movieId FROM genome - tags WHERE tag LIKE '%epic%')",
+    "question": "查询评分大于 4 的用户编号和电影编号以及标签包含 'epic' 的电影的用户编号和电影编号的并集（包含重复项）"
+  },
+   {
+    "sql": "SELECT userId, movieId FROM tags WHERE tag = 'funny'",
+    "question": "查询将电影标记为 'funny' 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, tag FROM tags WHERE movieId = 110",
+    "question": "查询电影编号为 110 的用户编号和标签"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags ORDER BY timestamp ASC",
+    "question": "按时间戳升序排列查询所有用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT tag, COUNT(*) FROM tags GROUP BY tag",
+    "question": "统计每个标签的使用次数"
+  },
+  {
+    "sql": "SELECT tag, COUNT(*) FROM tags GROUP BY tag HAVING COUNT(*) > 8",
+    "question": "查询使用次数超过 8 次的标签及其使用次数"
+  },
+  {
+    "sql": "SELECT t1.userId, t1.movieId FROM tags t1 JOIN tags t2 ON t1.tag = t2.tag WHERE t2.movieId = 120",
+    "question": "查询与电影编号为 120 具有相同标签的其他用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Sports')",
+    "question": "查询体育类型电影的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, tag FROM tags) AS sub WHERE tag LIKE '%amazing%'",
+    "question": "使用子查询查询标签包含 'amazing' 的用户编号和标签"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM genome - scores WHERE relevance > 0.92) ORDER BY timestamp DESC",
+    "question": "查询相关性大于 0.92 的电影的用户编号和电影编号，并按时间戳降序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags UNION SELECT userId, movieId FROM (SELECT userId, movieId FROM tags WHERE tag LIKE '%sad%')",
+    "question": "查询所有用户编号和电影编号以及标签包含 'sad' 的用户编号和电影编号的并集"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags LIMIT 17",
+    "question": "查询前 17 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags LIMIT 10 OFFSET 25",
+    "question": "查询第 26 到第 35 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, tag FROM tags WHERE movieId NOT IN (SELECT movieId FROM ratings WHERE rating < 2)",
+    "question": "查询评分不小于 2 的电影的用户编号和标签"
+  },
+  {
+    "sql": "SELECT userId, COUNT(*) FROM tags GROUP BY userId ORDER BY COUNT(*) DESC LIMIT 6",
+    "question": "按用户编号分组，查询标记记录最多的前 6 个用户编号及其标记记录数量"
+  },
+  {
+    "sql": "SELECT movieId, COUNT(DISTINCT tag) FROM tags GROUP BY movieId",
+    "question": "统计每部电影的不同标签数量"
+  },
+  {
+    "sql": "SELECT movieId, COUNT(DISTINCT tag) FROM tags GROUP BY movieId HAVING COUNT(DISTINCT tag) > 3",
+    "question": "查询不同标签数量超过 3 个的电影编号及其不同标签数量"
+  },
+  {
+    "sql": "SELECT t1.userId, t1.movieId FROM tags t1 JOIN (SELECT movieId FROM movies WHERE genres = 'Musical') AS sub ON t1.movieId = sub.movieId WHERE t1.tag LIKE '%music%'",
+    "question": "查询音乐类型电影且标签包含 'music' 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE userId NOT IN (SELECT userId FROM ratings WHERE rating IS NULL)",
+    "question": "查询有评分的用户的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, movieId FROM tags) AS sub WHERE userId IN (25, 35, 45)",
+    "question": "使用子查询查询用户编号为 25、35 或 45 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM links WHERE imdbId LIKE 'tt4%') ORDER BY tag ASC",
+    "question": "查询 IMDb ID 以 'tt4' 开头的电影的用户编号和电影编号，并按标签升序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE tag LIKE '%inspiring%' UNION ALL SELECT userId, movieId FROM tags WHERE movieId = 130",
+    "question": "查询标签包含 'inspiring' 的用户编号和电影编号以及电影编号为 130 的用户编号和电影编号的并集（包含重复项）"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags LIMIT 28 OFFSET 12",
+    "question": "查询第 13 到第 40 条用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE tag REGEXP '^[A - M]'",
+    "question": "查询标签以 A - M 开头的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, COUNT(*) FROM tags WHERE tag LIKE '%scary%' GROUP BY userId",
+    "question": "统计将电影标记为 'scary' 的每个用户的标记记录数量"
+  },
+  {
+    "sql": "SELECT userId, SUM(LENGTH(tag)) FROM tags GROUP BY userId HAVING SUM(LENGTH(tag)) > 50",
+    "question": "查询标签总长度超过 50 的用户编号及其标签总长度"
+  },
+  {
+    "sql": "SELECT t1.userId, t1.movieId FROM tags t1 JOIN tags t2 ON t1.tag = t2.tag WHERE t2.userId = 65 AND t1.userId != t2.userId",
+    "question": "查询与用户编号为 65 使用相同标签的其他用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM movies WHERE title LIKE '%Dream%') AND tag LIKE '%wonderful%'",
+    "question": "查询标题包含 'Dream' 且标签包含 'wonderful' 的电影的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT * FROM (SELECT userId, movieId FROM tags) AS sub WHERE userId NOT IN (70, 80, 90)",
+    "question": "使用子查询查询用户编号不是 70、80 或 90 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM genome - scores WHERE tagId = 18) ORDER BY userId DESC",
+    "question": "查询标签编号为 18 的电影的用户编号和电影编号，并按用户编号降序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE tag LIKE '%mysterious%' UNION SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM links WHERE tmdbId < 1000)",
+    "question": "查询标签包含 'mysterious' 的用户编号和电影编号以及 TMDb ID 小于 1000 的电影的用户编号和电影编号的并集"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM movies WHERE genres = 'Adventure') AND tag LIKE '%exciting%'",
+    "question": "查询冒险类型电影且标签包含 'exciting' 的用户编号和电影编号"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE userId IN (SELECT userId FROM ratings WHERE rating > 4.5) ORDER BY tag ASC",
+    "question": "查询评分大于 4.5 的用户的用户编号和电影编号，并按标签升序排列"
+  },
+  {
+    "sql": "SELECT userId, movieId FROM tags WHERE tag LIKE '%heartwarming%' UNION ALL SELECT userId, movieId FROM tags WHERE movieId IN (SELECT movieId FROM genome - tags WHERE tag LIKE '%legendary%')",
+    "question": "查询标签包含 'heartwarming' 的用户编号和电影编号以及标签包含 'legendary' 的电影的用户编号和电影编号的并集（包含重复项）"
+  }
+]
