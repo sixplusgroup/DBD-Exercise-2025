@@ -26,8 +26,8 @@ public class TransactionManager {
     private static final AtomicInteger transactionId = new AtomicInteger(-1);
 
     /**
-     * 开始一个新事物
-     * @return 该事物的id
+     * 开始一个新事务
+     * @return 该事务的id
      */
     public int beginTransaction() {
         int id = transactionId.incrementAndGet();
